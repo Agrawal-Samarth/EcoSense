@@ -35,7 +35,7 @@ const About = () => {
       number: 1, 
       title: "No Poverty", 
       color: "bg-red-500", 
-      image: "./images/sdg/1.png",
+      image: import.meta.env.BASE_URL + "images/sdg/1.png",
       description: "End poverty in all its forms everywhere",
       details: {
         fullTitle: "Goal 1: No Poverty",
@@ -59,7 +59,7 @@ const About = () => {
       number: 2, 
       title: "Zero Hunger", 
       color: "bg-orange-500", 
-      image: "./images/sdg/2.png",
+      image: import.meta.env.BASE_URL + "images/sdg/2.png",
       description: "End hunger, achieve food security and improved nutrition",
       details: {
         fullTitle: "Goal 2: Zero Hunger",
@@ -83,7 +83,7 @@ const About = () => {
       number: 3, 
       title: "Good Health & Well-being", 
       color: "bg-green-500", 
-      image: "./images/sdg/3.png",
+      image: import.meta.env.BASE_URL + "images/sdg/3.png",
       description: "Ensure healthy lives and promote well-being",
       details: {
         fullTitle: "Goal 3: Good Health and Well-being",
@@ -107,7 +107,7 @@ const About = () => {
       number: 4, 
       title: "Quality Education", 
       color: "bg-red-600", 
-      image: "./images/sdg/4.png",
+      image: import.meta.env.BASE_URL + "images/sdg/4.png",
       description: "Ensure inclusive and equitable quality education",
       details: {
         fullTitle: "Goal 4: Quality Education",
@@ -131,7 +131,7 @@ const About = () => {
       number: 5, 
       title: "Gender Equality", 
       color: "bg-orange-600", 
-      image: "./images/sdg/5.png",
+      image: import.meta.env.BASE_URL + "images/sdg/5.png",
       description: "Achieve gender equality and empower all women",
       details: {
         fullTitle: "Goal 5: Gender Equality",
@@ -155,7 +155,7 @@ const About = () => {
       number: 6, 
       title: "Clean Water & Sanitation", 
       color: "bg-blue-500", 
-      image: "./images/sdg/6.png",
+      image: import.meta.env.BASE_URL + "images/sdg/6.png",
       description: "Ensure availability of water and sanitation",
       details: {
         fullTitle: "Goal 6: Clean Water and Sanitation",
@@ -179,7 +179,7 @@ const About = () => {
       number: 7, 
       title: "Affordable & Clean Energy", 
       color: "bg-yellow-500", 
-      image: "./images/sdg/7.png",
+      image: import.meta.env.BASE_URL + "images/sdg/7.png",
       description: "Ensure access to affordable, reliable energy",
       details: {
         fullTitle: "Goal 7: Affordable and Clean Energy",
@@ -203,7 +203,7 @@ const About = () => {
       number: 8, 
       title: "Decent Work & Economic Growth", 
       color: "bg-red-700", 
-      image: "./images/sdg/8.png",
+      image: import.meta.env.BASE_URL + "images/sdg/8.png",
       description: "Promote sustained economic growth and employment",
       details: {
         fullTitle: "Goal 8: Decent Work and Economic Growth",
@@ -227,7 +227,7 @@ const About = () => {
       number: 9, 
       title: "Industry, Innovation & Infrastructure", 
       color: "bg-orange-700", 
-      image: "./images/sdg/9.png",
+      image: import.meta.env.BASE_URL + "images/sdg/9.png",
       description: "Build resilient infrastructure and innovation",
       details: {
         fullTitle: "Goal 9: Industry, Innovation and Infrastructure",
@@ -251,7 +251,7 @@ const About = () => {
       number: 10, 
       title: "Reduced Inequalities", 
       color: "bg-red-800", 
-      image: "./images/sdg/10.png",
+      image: import.meta.env.BASE_URL + "images/sdg/10.png",
       description: "Reduce inequality within and among countries",
       details: {
         fullTitle: "Goal 10: Reduced Inequalities",
@@ -275,7 +275,7 @@ const About = () => {
       number: 11, 
       title: "Sustainable Cities", 
       color: "bg-orange-800", 
-      image: "./images/sdg/11.png",
+      image: import.meta.env.BASE_URL + "images/sdg/11.png",
       description: "Make cities inclusive, safe, resilient and sustainable",
       details: {
         fullTitle: "Goal 11: Sustainable Cities and Communities",
@@ -299,7 +299,7 @@ const About = () => {
       number: 12, 
       title: "Responsible Consumption", 
       color: "bg-amber-600", 
-      image: "./images/sdg/12.png",
+      image: import.meta.env.BASE_URL + "images/sdg/12.png",
       description: "Ensure sustainable consumption and production",
       details: {
         fullTitle: "Goal 12: Responsible Consumption and Production",
@@ -323,7 +323,7 @@ const About = () => {
       number: 13, 
       title: "Climate Action", 
       color: "bg-green-600", 
-      image: "./images/sdg/13.png",
+      image: import.meta.env.BASE_URL + "images/sdg/13.png",
       description: "Take urgent action to combat climate change",
       details: {
         fullTitle: "Goal 13: Climate Action",
@@ -347,7 +347,7 @@ const About = () => {
       number: 14, 
       title: "Life Below Water", 
       color: "bg-blue-600", 
-      image: "./images/sdg/14.png",
+      image: import.meta.env.BASE_URL + "images/sdg/14.png",
       description: "Conserve and sustainably use marine resources",
       details: {
         fullTitle: "Goal 14: Life Below Water",
@@ -371,7 +371,7 @@ const About = () => {
       number: 15, 
       title: "Life on Land", 
       color: "bg-green-700", 
-      image: "./images/sdg/15.png",
+      image: import.meta.env.BASE_URL + "images/sdg/15.png",
       description: "Protect, restore and promote sustainable land use",
       details: {
         fullTitle: "Goal 15: Life on Land",
@@ -395,7 +395,7 @@ const About = () => {
       number: 16, 
       title: "Peace, Justice & Strong Institutions", 
       color: "bg-blue-700", 
-      image: "./images/sdg/16.png",
+      image: import.meta.env.BASE_URL + "images/sdg/16.png",
       description: "Promote peaceful and inclusive societies",
       details: {
         fullTitle: "Goal 16: Peace, Justice and Strong Institutions",
@@ -419,7 +419,7 @@ const About = () => {
       number: 17, 
       title: "Partnerships for the Goals", 
       color: "bg-blue-800", 
-      image: "./images/sdg/17.png",
+      image: import.meta.env.BASE_URL + "images/sdg/17.png",
       description: "Strengthen global partnerships for sustainable development",
       details: {
         fullTitle: "Goal 17: Partnerships for the Goals",
@@ -785,7 +785,7 @@ const About = () => {
               >
                 <div className="relative mb-3">
                   <img 
-                    src={goal.image || `./images/sdg/${goal.number}.png`} 
+                    src={goal.image || import.meta.env.BASE_URL + `images/sdg/${goal.number}.png`} 
                     alt={`SDG ${goal.number}`}
                     className="w-16 h-16 mx-auto rounded-lg object-cover group-hover:scale-110 transition-transform duration-300"
                     onError={(e) => {
