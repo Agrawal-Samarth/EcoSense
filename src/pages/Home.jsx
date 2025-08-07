@@ -68,6 +68,36 @@ const Home = () => {
     }
   }, [hasScrolled]);
 
+  // Handle video autoplay for mobile devices
+  useEffect(() => {
+    const handleUserInteraction = () => {
+      setIsVideoPlaying(true);
+      document.removeEventListener('touchstart', handleUserInteraction);
+      document.removeEventListener('click', handleUserInteraction);
+    };
+
+    // Check if device is mobile
+    const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+    
+    if (isMobile) {
+      // On mobile, start video on first interaction
+      document.addEventListener('touchstart', handleUserInteraction);
+      document.addEventListener('click', handleUserInteraction);
+    } else {
+      // On desktop, start video after delay
+      const timer = setTimeout(() => {
+        setIsVideoPlaying(true);
+      }, 1000);
+      
+      return () => clearTimeout(timer);
+    }
+
+    return () => {
+      document.removeEventListener('touchstart', handleUserInteraction);
+      document.removeEventListener('click', handleUserInteraction);
+    };
+  }, []);
+
   const urgencyStats = [
     { 
       icon: <Thermometer className="w-8 h-8" />,
@@ -448,11 +478,33 @@ const Home = () => {
             muted
             loop
             playsInline
+            webkit-playsinline="true"
+            x5-playsinline="true"
+            x5-video-player-type="h5"
+            x5-video-player-fullscreen="true"
+            preload="auto"
             poster="https://images.unsplash.com/photo-1569163139394-de4e1c312ffa?w=1920&h=1080&fit=crop"
+            onError={(e) => {
+              console.log('Video failed to load, showing fallback image');
+              e.target.style.display = 'none';
+            }}
+            onLoadStart={() => {
+              console.log('Video loading started');
+            }}
+            onCanPlay={() => {
+              console.log('Video can play');
+            }}
           >
             <source src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4" type="video/mp4" />
             {/* Fallback background image */}
           </video>
+          {/* Fallback background image for when video doesn't load */}
+          <div 
+            className="absolute inset-0 w-full h-full bg-cover bg-center"
+            style={{
+              backgroundImage: "url('https://images.unsplash.com/photo-1569163139394-de4e1c312ffa?w=1920&h=1080&fit=crop')"
+            }}
+          />
           <div className="absolute inset-0 bg-black/60"></div>
         </div>
         
@@ -467,6 +519,8 @@ const Home = () => {
           animate={{ y: [0, 30, 0], opacity: [0.2, 0.5, 0.2] }}
           transition={{ duration: 6, repeat: Infinity, delay: 1 }}
         />
+        
+
 
         <div className="container-custom relative z-10 text-center">
           <motion.div
@@ -476,13 +530,14 @@ const Home = () => {
             className="mb-8"
           >
             <motion.div
-              className="inline-flex items-center gap-2 bg-red-500/20 backdrop-blur-md rounded-full px-6 py-3 mb-8 border border-red-300/30"
+              className="inline-flex items-center gap-1 sm:gap-2 bg-red-500/20 backdrop-blur-md rounded-full px-4 sm:px-6 py-2 sm:py-3 mb-6 sm:mb-8 border border-red-300/30"
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ delay: 0.2, duration: 0.6 }}
             >
-              <AlertTriangle className="w-5 h-5 text-red-300" />
-              <span className="text-white/90 font-medium">Climate Emergency</span>
+              <AlertTriangle className="w-4 h-4 sm:w-5 sm:h-5 text-red-300" />
+              <span className="text-white/90 font-medium text-sm sm:text-base">Climate Emergency</span>
+              <AlertTriangle className="w-4 h-4 sm:w-5 sm:h-5 text-red-300" />
             </motion.div>
             
             {/* Dynamic Text Section */}
@@ -495,13 +550,13 @@ const Home = () => {
                   exit={{ opacity: 0, y: -30 }}
                   transition={{ duration: 0.8 }}
                 >
-                  <h1 className="text-3xl sm:text-5xl md:text-7xl font-bold mb-6 text-white leading-tight">
+                  <h1 className="text-2xl sm:text-4xl md:text-6xl lg:text-7xl font-bold mb-4 sm:mb-6 text-white leading-tight px-4">
                     Our Planet is in
                     <br />
                     <span className="text-red-300">Danger</span>
                   </h1>
                   
-                  <p className="text-lg sm:text-xl md:text-2xl text-white/90 mb-8 max-w-4xl mx-auto leading-relaxed px-4">
+                  <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-white/90 mb-6 sm:mb-8 max-w-4xl mx-auto leading-relaxed px-4">
                     Watch this video to understand the <span className="text-red-300 font-semibold">urgent reality</span> of climate change, 
                     then discover how you can make a difference.
                   </p>
@@ -513,13 +568,13 @@ const Home = () => {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.8 }}
                 >
-                  <h1 className="text-3xl sm:text-5xl md:text-7xl font-bold mb-6 text-white leading-tight">
+                  <h1 className="text-2xl sm:text-4xl md:text-6xl lg:text-7xl font-bold mb-4 sm:mb-6 text-white leading-tight px-4">
                     The Time to
                     <br />
                     <span className="text-emerald-300">Act is Now</span>
                   </h1>
                   
-                  <p className="text-lg sm:text-xl md:text-2xl text-white/90 mb-8 max-w-4xl mx-auto leading-relaxed px-4">
+                  <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-white/90 mb-6 sm:mb-8 max-w-4xl mx-auto leading-relaxed px-4">
                     Every second counts in the fight against climate change. 
                     <span className="text-emerald-300 font-semibold"> Scroll down</span> to learn more and take action.
                   </p>

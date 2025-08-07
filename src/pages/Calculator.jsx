@@ -55,15 +55,22 @@ const Calculator = () => {
     register,
     handleSubmit,
     formState: { errors },
-    reset
+    reset,
+    watch
   } = useForm({
     resolver: yupResolver(schema)
   });
 
+
+
   const transportOptions = [
-    { value: 'car', label: 'Car', icon: Car, factor: 2.3 },
-    { value: 'bike', label: 'Bicycle', icon: Bike, factor: 0.0 },
+    { value: 'suv', label: 'SUV/Large Car', icon: Car, factor: 4.5 },
+    { value: 'car', label: 'Regular Car', icon: Car, factor: 2.3 },
+    { value: 'hybrid', label: 'Hybrid Car', icon: Car, factor: 1.2 },
+    { value: 'electric', label: 'Electric Car', icon: Car, factor: 0.8 },
+    { value: 'motorcycle', label: 'Motorcycle', icon: Bike, factor: 1.8 },
     { value: 'public', label: 'Public Transport', icon: Train, factor: 0.4 },
+    { value: 'bike', label: 'Bicycle', icon: Bike, factor: 0.0 },
     { value: 'walk', label: 'Walking', icon: Leaf, factor: 0.0 },
   ];
 
@@ -71,7 +78,10 @@ const Calculator = () => {
     { value: 'vegan', label: 'Vegan', factor: 1.5 },
     { value: 'vegetarian', label: 'Vegetarian', factor: 2.0 },
     { value: 'pescatarian', label: 'Pescatarian', factor: 2.5 },
-    { value: 'omnivore', label: 'Omnivore', factor: 3.0 },
+    { value: 'low-meat', label: 'Low Meat (1-2x/week)', factor: 3.2 },
+    { value: 'omnivore', label: 'Regular Omnivore', factor: 3.8 },
+    { value: 'high-meat', label: 'High Meat (daily)', factor: 4.5 },
+    { value: 'beef-heavy', label: 'Beef-Heavy Diet', factor: 6.2 },
   ];
 
   const calculateFootprint = (data) => {
@@ -88,13 +98,41 @@ const Calculator = () => {
       const energyCO2 = (data.energyUsage * 0.5) / 12; // Assuming 0.5 kg CO2 per kWh
       const digitalCO2 = (data.digitalUsage * 0.1 * 365) / 1000; // Rough estimate
       
-      const totalCO2 = transportCO2 + dietCO2 + energyCO2 + digitalCO2;
+      // Additional factors for waste and shopping
+      let wasteFactor = 0;
+      let shoppingFactor = 0;
+      
+      // Waste management factors
+      switch(data.waste) {
+        case 'zero-waste': wasteFactor = -0.5; break;
+        case 'recycling': wasteFactor = -0.3; break;
+        case 'some-recycling': wasteFactor = 0; break;
+        case 'minimal-recycling': wasteFactor = 0.5; break;
+        case 'no-recycling': wasteFactor = 1.0; break;
+        case 'excessive-waste': wasteFactor = 2.0; break;
+        default: wasteFactor = 0;
+      }
+      
+      // Shopping habits factors
+      switch(data.shopping) {
+        case 'zero-waste-shopping': shoppingFactor = -0.8; break;
+        case 'sustainable': shoppingFactor = -0.4; break;
+        case 'mixed': shoppingFactor = 0; break;
+        case 'conventional': shoppingFactor = 0.8; break;
+        case 'fast-fashion': shoppingFactor = 1.5; break;
+        case 'luxury-consumption': shoppingFactor = 2.5; break;
+        default: shoppingFactor = 0;
+      }
+      
+      const totalCO2 = transportCO2 + dietCO2 + energyCO2 + digitalCO2 + wasteFactor + shoppingFactor;
       
       const breakdown = [
         { category: 'Transport', value: transportCO2, color: '#3b82f6' },
         { category: 'Diet', value: dietCO2, color: '#10b981' },
         { category: 'Energy', value: energyCO2, color: '#f59e0b' },
         { category: 'Digital', value: digitalCO2, color: '#8b5cf6' },
+        { category: 'Waste', value: wasteFactor, color: '#ef4444' },
+        { category: 'Shopping', value: shoppingFactor, color: '#ec4899' },
       ];
 
       const globalAverage = 4.8; // Global average CO2 per person per year
@@ -112,29 +150,76 @@ const Calculator = () => {
     }, 1500);
   };
 
+  const getFootprintColor = (total, average) => {
+    if (total > average * 1.5) return 'text-red-500'; // Very high - red
+    if (total > average * 1.2) return 'text-orange-500'; // High - orange
+    if (total > average * 0.8) return 'text-yellow-500'; // Moderate - yellow
+    return 'text-green-500'; // Low - green
+  };
+
+  const getFootprintStatus = (total, average) => {
+    if (total > average * 1.5) return { emoji: '🔴', text: 'Very High Impact' };
+    if (total > average * 1.2) return { emoji: '🟠', text: 'High Impact' };
+    if (total > average * 0.8) return { emoji: '🟡', text: 'Moderate Impact' };
+    return { emoji: '🟢', text: 'Low Impact' };
+  };
+
   const generateTips = (data, total, average) => {
     const tips = [];
     
-    if (data.transport === 'car') {
-      tips.push('Consider carpooling or using public transport to reduce emissions');
+    // Transport tips
+    if (data.transport === 'suv') {
+      tips.push('Consider downsizing to a smaller, more fuel-efficient vehicle');
+    } else if (data.transport === 'car') {
+      tips.push('Consider carpooling, public transport, or switching to a hybrid/electric vehicle');
+    } else if (data.transport === 'motorcycle') {
+      tips.push('Motorcycles are better than cars, but consider public transport for longer trips');
     }
     
-    if (data.diet === 'omnivore') {
-      tips.push('Try reducing meat consumption - even one meat-free day per week helps');
+    // Diet tips
+    if (data.diet === 'beef-heavy') {
+      tips.push('Beef has the highest carbon footprint. Try reducing beef consumption first');
+    } else if (data.diet === 'high-meat') {
+      tips.push('Try reducing meat consumption - even one meat-free day per week helps significantly');
+    } else if (data.diet === 'omnivore') {
+      tips.push('Consider reducing meat consumption and choosing more sustainable protein sources');
     }
     
+    // Energy tips
     if (data.energyUsage > 500) {
-      tips.push('Switch to energy-efficient appliances and LED bulbs');
+      tips.push('Switch to energy-efficient appliances, LED bulbs, and consider renewable energy');
+    } else if (data.energyUsage > 300) {
+      tips.push('Your energy usage is moderate. Consider small improvements like LED bulbs');
     }
     
+    // Digital tips
     if (data.digitalUsage > 8) {
-      tips.push('Consider reducing screen time and streaming in lower quality');
+      tips.push('Consider reducing screen time and streaming in lower quality to save energy');
     }
     
-    if (total > average) {
+    // Waste tips
+    if (data.waste === 'excessive-waste' || data.waste === 'no-recycling') {
+      tips.push('Start with basic recycling and gradually work towards zero waste');
+    } else if (data.waste === 'minimal-recycling') {
+      tips.push('Expand your recycling efforts and consider composting');
+    }
+    
+    // Shopping tips
+    if (data.shopping === 'fast-fashion' || data.shopping === 'luxury-consumption') {
+      tips.push('Consider buying second-hand, supporting sustainable brands, or buying less');
+    } else if (data.shopping === 'conventional') {
+      tips.push('Try supporting local businesses and choosing more sustainable products');
+    }
+    
+    // Overall assessment
+    if (total > average * 1.5) {
+      tips.push('Your footprint is significantly above average. Focus on the biggest impact areas: transport and diet');
+    } else if (total > average) {
       tips.push('Your footprint is above average - focus on the biggest impact areas first');
+    } else if (total < average * 0.7) {
+      tips.push('Excellent! You\'re well below the global average. Consider sharing your sustainable practices with others');
     } else {
-      tips.push('Great job! You\'re below the global average. Keep up the good work!');
+      tips.push('Good job! You\'re below the global average. Keep up the good work!');
     }
     
     return tips;
@@ -185,6 +270,7 @@ const Calculator = () => {
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: 0.2 }}
           >
+
             <div className="card">
               <div className="flex items-center space-x-3 mb-6">
                 <CalculatorIcon className="h-8 w-8 text-eco-green" />
@@ -197,18 +283,18 @@ const Calculator = () => {
                   <label className="block text-sm font-medium text-gray-700 mb-3">
                     Primary Mode of Transport
                   </label>
-                  <div className="grid grid-cols-2 gap-3">
+                  <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
                     {transportOptions.map((option) => (
-                      <label key={option.value} className="relative">
+                      <label key={option.value} className="relative cursor-pointer">
                         <input
                           type="radio"
                           value={option.value}
                           {...register('transport')}
-                          className="sr-only"
+                          className="sr-only peer"
                         />
-                        <div className="flex items-center p-3 border-2 rounded-lg cursor-pointer transition-all hover:border-eco-green peer-checked:border-eco-green peer-checked:bg-eco-green/10">
-                          <option.icon className="h-5 w-5 mr-2 text-gray-600" />
-                          <span className="text-sm font-medium">{option.label}</span>
+                        <div className="flex items-center p-3 border-2 border-gray-200 rounded-lg transition-all duration-200 hover:border-eco-green peer-checked:border-eco-green peer-checked:bg-eco-green/10">
+                          <option.icon className="h-5 w-5 mr-2 text-gray-600 peer-checked:text-eco-green" />
+                          <span className="text-sm font-medium peer-checked:text-eco-green">{option.label}</span>
                         </div>
                       </label>
                     ))}
@@ -226,7 +312,7 @@ const Calculator = () => {
                   <input
                     type="number"
                     {...register('transportHours')}
-                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-eco-green focus:border-transparent"
+                    className="form-input"
                     placeholder="e.g., 5"
                   />
                   {errors.transportHours && (
@@ -239,18 +325,18 @@ const Calculator = () => {
                   <label className="block text-sm font-medium text-gray-700 mb-3">
                     Diet Type
                   </label>
-                  <div className="grid grid-cols-2 gap-3">
+                  <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
                     {dietOptions.map((option) => (
-                      <label key={option.value} className="relative">
+                      <label key={option.value} className="relative cursor-pointer">
                         <input
                           type="radio"
                           value={option.value}
                           {...register('diet')}
-                          className="sr-only"
+                          className="sr-only peer"
                         />
-                        <div className="flex items-center p-3 border-2 rounded-lg cursor-pointer transition-all hover:border-eco-green peer-checked:border-eco-green peer-checked:bg-eco-green/10">
-                          <Utensils className="h-5 w-5 mr-2 text-gray-600" />
-                          <span className="text-sm font-medium">{option.label}</span>
+                        <div className="flex items-center p-3 border-2 border-gray-200 rounded-lg transition-all duration-200 hover:border-eco-green peer-checked:border-eco-green peer-checked:bg-eco-green/10">
+                          <Utensils className="h-5 w-5 mr-2 text-gray-600 peer-checked:text-eco-green" />
+                          <span className="text-sm font-medium peer-checked:text-eco-green">{option.label}</span>
                         </div>
                       </label>
                     ))}
@@ -268,7 +354,7 @@ const Calculator = () => {
                   <input
                     type="number"
                     {...register('energyUsage')}
-                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-eco-green focus:border-transparent"
+                    className="form-input"
                     placeholder="e.g., 300"
                   />
                   {errors.energyUsage && (
@@ -284,7 +370,7 @@ const Calculator = () => {
                   <input
                     type="number"
                     {...register('digitalUsage')}
-                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-eco-green focus:border-transparent"
+                    className="form-input"
                     placeholder="e.g., 4"
                   />
                   {errors.digitalUsage && (
@@ -299,12 +385,15 @@ const Calculator = () => {
                   </label>
                   <select
                     {...register('waste')}
-                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-eco-green focus:border-transparent"
+                    className="form-select"
                   >
                     <option value="">Select option</option>
+                    <option value="zero-waste">Zero Waste Lifestyle</option>
                     <option value="recycling">Recycling & Composting</option>
                     <option value="some-recycling">Some Recycling</option>
+                    <option value="minimal-recycling">Minimal Recycling</option>
                     <option value="no-recycling">No Recycling</option>
+                    <option value="excessive-waste">Excessive Waste</option>
                   </select>
                   {errors.waste && (
                     <p className="text-red-500 text-sm mt-1">{errors.waste.message}</p>
@@ -318,12 +407,15 @@ const Calculator = () => {
                   </label>
                   <select
                     {...register('shopping')}
-                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-eco-green focus:border-transparent"
+                    className="form-select"
                   >
                     <option value="">Select option</option>
+                    <option value="zero-waste-shopping">Zero Waste Shopping</option>
                     <option value="sustainable">Sustainable & Local</option>
-                    <option value="mixed">Mixed</option>
-                    <option value="conventional">Conventional</option>
+                    <option value="mixed">Mixed Approach</option>
+                    <option value="conventional">Conventional Shopping</option>
+                    <option value="fast-fashion">Fast Fashion & Disposable</option>
+                    <option value="luxury-consumption">Luxury & High Consumption</option>
                   </select>
                   {errors.shopping && (
                     <p className="text-red-500 text-sm mt-1">{errors.shopping.message}</p>
@@ -371,10 +463,14 @@ const Calculator = () => {
                   {/* Total Result */}
                   <div className="card text-center">
                     <h3 className="text-2xl font-bold text-gray-800 mb-4">Your Carbon Footprint</h3>
-                    <div className="text-6xl font-bold text-eco-green mb-2">
+                    <div className={`text-6xl font-bold mb-2 ${getFootprintColor(results.total, results.globalAverage)}`}>
                       {results.total.toFixed(1)}
                     </div>
-                    <p className="text-gray-600 mb-4">tons CO2 per year</p>
+                    <p className="text-gray-600 mb-2">tons CO2 per year</p>
+                    <div className={`flex items-center justify-center gap-2 mb-4 ${getFootprintColor(results.total, results.globalAverage)}`}>
+                      <span className="text-2xl">{getFootprintStatus(results.total, results.globalAverage).emoji}</span>
+                      <span className="font-semibold">{getFootprintStatus(results.total, results.globalAverage).text}</span>
+                    </div>
                     
                     <div className="flex items-center justify-center space-x-4 text-sm">
                       <div className="flex items-center space-x-1">
@@ -386,7 +482,7 @@ const Calculator = () => {
                     <div className="mt-4 p-3 bg-gray-50 rounded-lg">
                       <p className="text-sm text-gray-600">
                         You are {results.comparison > 100 ? 'above' : 'below'} the global average by{' '}
-                        <span className="font-semibold text-eco-green">
+                        <span className={`font-semibold ${getFootprintColor(results.total, results.globalAverage)}`}>
                           {Math.abs(results.comparison - 100).toFixed(1)}%
                         </span>
                       </p>

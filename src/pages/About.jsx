@@ -452,61 +452,81 @@ const About = () => {
     {
       question: "How often do you use public transportation or active transport (walking/cycling)?",
       options: [
-        { text: "Always (walking/cycling/public transport)", score: 5 },
-        { text: "Mostly (80% of trips)", score: 4 },
-        { text: "Sometimes (50% of trips)", score: 3 },
-        { text: "Rarely (20% of trips)", score: 2 },
-        { text: "Never (always drive)", score: 1 }
+        { text: "Always (walking/cycling/public transport)", score: 5, impact: "Reduces CO2 by ~2.5 tons/year" },
+        { text: "Mostly (80% of trips)", score: 4, impact: "Reduces CO2 by ~2 tons/year" },
+        { text: "Sometimes (50% of trips)", score: 3, impact: "Reduces CO2 by ~1.2 tons/year" },
+        { text: "Rarely (20% of trips)", score: 2, impact: "Reduces CO2 by ~0.5 tons/year" },
+        { text: "Never (always drive)", score: 1, impact: "Generates ~2.5 tons CO2/year" }
       ]
     },
     {
       question: "What type of diet do you primarily follow?",
       options: [
-        { text: "Vegan (no animal products)", score: 5 },
-        { text: "Vegetarian (no meat)", score: 4 },
-        { text: "Pescatarian (fish + plants)", score: 3 },
-        { text: "Reduced meat (1-2 times/week)", score: 2 },
-        { text: "Regular meat eater (daily)", score: 1 }
+        { text: "Vegan (no animal products)", score: 5, impact: "Reduces footprint by ~2.9 tons CO2/year" },
+        { text: "Vegetarian (no meat)", score: 4, impact: "Reduces footprint by ~1.8 tons CO2/year" },
+        { text: "Pescatarian (fish + plants)", score: 3, impact: "Reduces footprint by ~1.2 tons CO2/year" },
+        { text: "Reduced meat (1-2 times/week)", score: 2, impact: "Reduces footprint by ~0.8 tons CO2/year" },
+        { text: "Regular meat eater (daily)", score: 1, impact: "Generates ~2.9 tons CO2/year" }
       ]
     },
     {
       question: "How do you manage your household waste?",
       options: [
-        { text: "Comprehensive recycling & composting", score: 5 },
-        { text: "Mostly recycling (paper, plastic, metal)", score: 4 },
-        { text: "Some recycling (basic items)", score: 3 },
-        { text: "Minimal recycling", score: 2 },
-        { text: "No recycling", score: 1 }
+        { text: "Comprehensive recycling & composting", score: 5, impact: "Reduces waste by ~90%" },
+        { text: "Mostly recycling (paper, plastic, metal)", score: 4, impact: "Reduces waste by ~70%" },
+        { text: "Some recycling (basic items)", score: 3, impact: "Reduces waste by ~50%" },
+        { text: "Minimal recycling", score: 2, impact: "Reduces waste by ~20%" },
+        { text: "No recycling", score: 1, impact: "All waste goes to landfill" }
       ]
     },
     {
       question: "What's your energy consumption pattern?",
       options: [
-        { text: "Renewable energy (solar/wind)", score: 5 },
-        { text: "Energy-efficient appliances & habits", score: 4 },
-        { text: "Conscious about usage", score: 3 },
-        { text: "Sometimes mindful", score: 2 },
-        { text: "Not concerned about energy use", score: 1 }
+        { text: "Renewable energy (solar/wind)", score: 5, impact: "Reduces CO2 by ~3.5 tons/year" },
+        { text: "Energy-efficient appliances & habits", score: 4, impact: "Reduces CO2 by ~2.5 tons/year" },
+        { text: "Conscious about usage", score: 3, impact: "Reduces CO2 by ~1.5 tons/year" },
+        { text: "Sometimes mindful", score: 2, impact: "Reduces CO2 by ~0.8 tons/year" },
+        { text: "Not concerned about energy use", score: 1, impact: "Generates ~3.5 tons CO2/year" }
       ]
     },
     {
       question: "How do you make purchasing decisions?",
       options: [
-        { text: "Always choose sustainable & local", score: 5 },
-        { text: "Mostly sustainable choices", score: 4 },
-        { text: "Sometimes consider sustainability", score: 3 },
-        { text: "Occasionally choose eco-friendly", score: 2 },
-        { text: "Price/convenience first", score: 1 }
+        { text: "Always choose sustainable & local", score: 5, impact: "Supports circular economy" },
+        { text: "Mostly sustainable choices", score: 4, impact: "Reduces supply chain impact" },
+        { text: "Sometimes consider sustainability", score: 3, impact: "Moderate environmental impact" },
+        { text: "Occasionally choose eco-friendly", score: 2, impact: "Limited sustainability focus" },
+        { text: "Price/convenience first", score: 1, impact: "High environmental impact" }
       ]
     },
     {
       question: "How much water do you conserve?",
       options: [
-        { text: "Extremely conscious (low-flow fixtures, rainwater)", score: 5 },
-        { text: "Very conscious (short showers, fix leaks)", score: 4 },
-        { text: "Somewhat conscious", score: 3 },
-        { text: "Basic conservation", score: 2 },
-        { text: "Not concerned about water use", score: 1 }
+        { text: "Extremely conscious (low-flow fixtures, rainwater)", score: 5, impact: "Saves ~50% water usage" },
+        { text: "Very conscious (short showers, fix leaks)", score: 4, impact: "Saves ~35% water usage" },
+        { text: "Somewhat conscious", score: 3, impact: "Saves ~20% water usage" },
+        { text: "Basic conservation", score: 2, impact: "Saves ~10% water usage" },
+        { text: "Not concerned about water use", score: 1, impact: "Standard water consumption" }
+      ]
+    },
+    {
+      question: "How do you handle digital device usage?",
+      options: [
+        { text: "Minimal usage, energy-efficient devices", score: 5, impact: "Very low digital footprint" },
+        { text: "Conscious usage, regular device maintenance", score: 4, impact: "Low digital footprint" },
+        { text: "Moderate usage, some energy awareness", score: 3, impact: "Moderate digital footprint" },
+        { text: "Heavy usage, basic energy saving", score: 2, impact: "High digital footprint" },
+        { text: "Very heavy usage, no energy concerns", score: 1, impact: "Very high digital footprint" }
+      ]
+    },
+    {
+      question: "What's your approach to clothing and fashion?",
+      options: [
+        { text: "Second-hand, sustainable materials only", score: 5, impact: "Minimal fashion footprint" },
+        { text: "Mostly sustainable, minimal new purchases", score: 4, impact: "Low fashion footprint" },
+        { text: "Mix of sustainable and regular choices", score: 3, impact: "Moderate fashion footprint" },
+        { text: "Occasional sustainable choices", score: 2, impact: "High fashion footprint" },
+        { text: "Fast fashion, frequent purchases", score: 1, impact: "Very high fashion footprint" }
       ]
     }
   ];
@@ -563,10 +583,41 @@ const About = () => {
   };
 
   const getScoreMessage = (score) => {
-    if (score >= 80) return { message: "Excellent! You're a climate champion!", icon: <Trophy className="w-8 h-8" />, color: "text-green-500" };
-    if (score >= 60) return { message: "Good job! You're making positive choices!", icon: <Star className="w-8 h-8" />, color: "text-blue-500" };
-    if (score >= 40) return { message: "You're on the right track! Keep improving!", icon: <Heart className="w-8 h-8" />, color: "text-yellow-500" };
-    return { message: "There's room for improvement! Start with small changes!", icon: <Lightbulb className="w-8 h-8" />, color: "text-orange-500" };
+    if (score >= 85) return { 
+      message: "Outstanding! You're an environmental leader!", 
+      icon: <Trophy className="w-8 h-8" />, 
+      color: "text-green-500",
+      category: "Environmental Champion",
+      description: "Your lifestyle choices demonstrate exceptional environmental awareness and commitment to sustainability."
+    };
+    if (score >= 70) return { 
+      message: "Excellent! You're making a real difference!", 
+      icon: <Star className="w-8 h-8" />, 
+      color: "text-blue-500",
+      category: "Eco Warrior",
+      description: "You're actively reducing your environmental impact and setting a great example for others."
+    };
+    if (score >= 55) return { 
+      message: "Good job! You're on the right path!", 
+      icon: <Heart className="w-8 h-8" />, 
+      color: "text-yellow-500",
+      category: "Eco Conscious",
+      description: "You're making positive choices and have good potential to further reduce your footprint."
+    };
+    if (score >= 40) return { 
+      message: "You're making progress! Keep it up!", 
+      icon: <Lightbulb className="w-8 h-8" />, 
+      color: "text-orange-500",
+      category: "Eco Learner",
+      description: "You're starting to make sustainable choices. Focus on the areas where you can improve most."
+    };
+    return { 
+      message: "Great start! Every small change matters!", 
+      icon: <AlertCircle className="w-8 h-8" />, 
+      color: "text-red-500",
+      category: "Eco Beginner",
+      description: "You're at the beginning of your sustainability journey. Start with small, manageable changes."
+    };
   };
 
   const SDGModal = ({ isOpen, onClose, sdg }) => {
@@ -877,7 +928,7 @@ const About = () => {
       </section>
 
       {/* Interactive Quiz */}
-      <section className="section-padding bg-gradient-to-r from-purple-600 to-blue-600 text-white">
+      <section className="section-padding bg-gradient-to-r from-purple-600 to-blue-600 text-white" data-quiz-section>
         <div className="container-custom">
           <motion.div
             initial={{ opacity: 0, y: 50 }}
@@ -934,9 +985,14 @@ const About = () => {
                               calculateQuizScore();
                             }
                           }}
-                          className="w-full p-4 bg-white/10 backdrop-blur-sm rounded-xl border border-white/20 text-left hover:bg-white/20 transition-all duration-300"
+                          className="w-full p-4 bg-white/10 backdrop-blur-sm rounded-xl border border-white/20 text-left hover:bg-white/20 transition-all duration-300 group"
                         >
-                          <span className="text-white font-medium">{option.text}</span>
+                          <div className="flex flex-col">
+                            <span className="text-white font-medium mb-1">{option.text}</span>
+                            <span className="text-white/70 text-sm group-hover:text-white/90 transition-colors">
+                              {option.impact}
+                            </span>
+                          </div>
                         </motion.button>
                       ))}
                     </div>
@@ -955,11 +1011,17 @@ const About = () => {
                 <div className="mb-6">
                   {getScoreMessage(quizScore).icon}
                 </div>
-                <h3 className="text-3xl font-bold text-white mb-4">
+                <h3 className="text-3xl font-bold text-white mb-2">
                   Your Score: {Math.round(quizScore)}%
                 </h3>
-                <p className={`text-xl font-semibold mb-6 ${getScoreMessage(quizScore).color}`}>
+                <div className={`text-xl font-semibold mb-2 ${getScoreMessage(quizScore).color}`}>
+                  {getScoreMessage(quizScore).category}
+                </div>
+                <p className={`text-lg font-semibold mb-4 ${getScoreMessage(quizScore).color}`}>
                   {getScoreMessage(quizScore).message}
+                </p>
+                <p className="text-white/80 mb-6 max-w-2xl mx-auto">
+                  {getScoreMessage(quizScore).description}
                 </p>
                 <motion.button
                   whileHover={{ scale: 1.05 }}

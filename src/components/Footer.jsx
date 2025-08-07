@@ -18,7 +18,7 @@ const Footer = () => {
   const footerLinks = {
     product: [
       { name: 'Calculator', path: '/calculator' },
-      { name: 'About EcoSense', path: '/about' },
+      { name: 'About Eco Footprint', path: '/about' },
       { name: 'School Corner', path: '/school-corner' },
       { name: 'Credits', path: '/credits' }
     ],
@@ -58,12 +58,13 @@ const Footer = () => {
                 className="mb-6"
               >
                 <Link to="/" className="flex items-center space-x-3 group">
-                  <motion.div
-                    whileHover={{ scale: 1.1, rotate: 5 }}
-                    className="w-12 h-12 bg-gradient-to-br from-emerald-500 to-teal-600 rounded-xl flex items-center justify-center shadow-lg"
-                  >
-                    <Leaf className="w-7 h-7 text-white" />
-                  </motion.div>
+                                <motion.div
+                whileHover={{ scale: 1.1, rotate: 5 }}
+                className="w-12 h-12 bg-gradient-to-br from-emerald-500 to-teal-600 rounded-xl flex items-center justify-center shadow-lg relative overflow-hidden"
+              >
+                <Leaf className="w-7 h-7 text-white relative z-10" />
+                <div className="absolute inset-0 bg-gradient-to-br from-blue-500/20 to-green-500/20 rounded-xl"></div>
+              </motion.div>
                   <div>
                     <span className="text-2xl font-bold text-white group-hover:text-emerald-300 transition-colors">
                       EcoSense
@@ -81,10 +82,13 @@ const Footer = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.1 }}
                 viewport={{ once: true }}
-                className="text-gray-300 mb-6 leading-relaxed"
+                className="text-gray-300 mb-6 leading-relaxed flex items-start gap-2"
               >
-                Empowering individuals to understand and reduce their environmental impact through 
-                innovative technology and education.
+                <Globe className="w-4 h-4 text-emerald-400 mt-1 flex-shrink-0" />
+                <span>
+                  Empowering individuals to understand and reduce their environmental impact through 
+                  innovative technology and education.
+                </span>
               </motion.p>
 
               {/* Social Links */}

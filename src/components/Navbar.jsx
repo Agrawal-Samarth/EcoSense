@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
   Leaf, 
@@ -18,6 +18,7 @@ const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const location = useLocation();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -42,11 +43,19 @@ const Navbar = () => {
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         scrolled ? 'nav-glass shadow-lg backdrop-blur-md bg-black/20' : 'bg-transparent'
       }`}
+      style={{ marginTop: scrolled ? '0' : '8px' }}
     >
-      <div className="container-custom">
-        <div className="flex items-center justify-between h-16 lg:h-20">
+      <div className="container-custom px-4 sm:px-6 lg:px-8">
+        <div className="flex items-center justify-between h-16 lg:h-24 relative">
           {/* Logo */}
-          <Link to="/" className="flex items-center space-x-3 group">
+          <Link 
+            to="/" 
+            className="flex items-center space-x-3 group"
+            onClick={() => {
+              // Scroll to top when clicking the logo
+              window.scrollTo({ top: 0, behavior: 'smooth' });
+            }}
+          >
             <motion.div
               whileHover={{ scale: 1.1, rotate: 5 }}
               className="w-10 h-10 lg:w-12 lg:h-12 bg-gradient-to-br from-emerald-500 to-teal-600 rounded-xl flex items-center justify-center shadow-lg"
@@ -70,6 +79,10 @@ const Navbar = () => {
               <Link
                 key={item.path}
                 to={item.path}
+                onClick={() => {
+                  // Scroll to top when navigating
+                  window.scrollTo({ top: 0, behavior: 'smooth' });
+                }}
                 className={`relative group px-4 py-2 rounded-xl transition-all duration-300 ${
                   location.pathname === item.path
                     ? 'text-emerald-300 bg-white/10'
@@ -94,15 +107,25 @@ const Navbar = () => {
 
           {/* CTA Button */}
           <div className="hidden lg:block">
-            <Link to="/about">
-              <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="btn-primary text-sm"
-              >
-                Take Quiz
-              </motion.button>
-            </Link>
+            <motion.button
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="btn-primary text-sm"
+              onClick={() => {
+                console.log('Take Quiz button clicked');
+                // Navigate to about page and scroll to quiz section
+                navigate('/about');
+                // Wait for page load then scroll to quiz section
+                setTimeout(() => {
+                  const quizSection = document.querySelector('[data-quiz-section]');
+                  if (quizSection) {
+                    quizSection.scrollIntoView({ behavior: 'smooth' });
+                  }
+                }, 100);
+              }}
+            >
+              Take Quiz
+            </motion.button>
           </div>
 
           {/* Mobile Menu Button */}
@@ -147,7 +170,7 @@ const Navbar = () => {
               transition={{ duration: 0.3 }}
               className="lg:hidden overflow-hidden"
             >
-              <div className="py-4 space-y-2">
+              <div className="py-4 px-4 space-y-2">
                 {navItems.map((item, index) => (
                   <motion.div
                     key={item.path}
@@ -157,7 +180,11 @@ const Navbar = () => {
                   >
                     <Link
                       to={item.path}
-                      onClick={() => setIsOpen(false)}
+                      onClick={() => {
+                        setIsOpen(false);
+                        // Scroll to top when navigating
+                        window.scrollTo({ top: 0, behavior: 'smooth' });
+                      }}
                       className={`flex items-center space-x-3 px-4 py-3 rounded-xl transition-all duration-300 ${
                         location.pathname === item.path
                           ? 'bg-white/10 text-emerald-300 border border-white/20'
@@ -176,11 +203,24 @@ const Navbar = () => {
                   transition={{ delay: navItems.length * 0.1 }}
                   className="pt-4"
                 >
-                  <Link to="/about" onClick={() => setIsOpen(false)}>
-                    <button className="w-full btn-primary">
-                      Take Quiz
-                    </button>
-                  </Link>
+                  <button 
+                    className="w-full btn-primary"
+                    onClick={() => {
+                      setIsOpen(false);
+                      console.log('Mobile Take Quiz button clicked');
+                      // Navigate to about page and scroll to quiz section
+                      navigate('/about');
+                      // Wait for page load then scroll to quiz section
+                      setTimeout(() => {
+                        const quizSection = document.querySelector('[data-quiz-section]');
+                        if (quizSection) {
+                          quizSection.scrollIntoView({ behavior: 'smooth' });
+                        }
+                      }, 100);
+                    }}
+                  >
+                    Take Quiz
+                  </button>
                 </motion.div>
               </div>
             </motion.div>
