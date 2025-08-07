@@ -151,16 +151,16 @@ const Calculator = () => {
   };
 
   const getFootprintColor = (total, average) => {
-    if (total > average * 1.5) return 'text-red-500'; // Very high - red
-    if (total > average * 1.2) return 'text-orange-500'; // High - orange
-    if (total > average * 0.8) return 'text-yellow-500'; // Moderate - yellow
-    return 'text-green-500'; // Low - green
+    if (total > 15) return 'text-red-500'; // Very high - red (above 15 tons)
+    if (total > 10) return 'text-orange-500'; // High - orange (above 10 tons)
+    if (total > 6) return 'text-yellow-500'; // Moderate - yellow (above 6 tons)
+    return 'text-green-500'; // Low - green (6 tons or below)
   };
 
   const getFootprintStatus = (total, average) => {
-    if (total > average * 1.5) return { emoji: '🔴', text: 'Very High Impact' };
-    if (total > average * 1.2) return { emoji: '🟠', text: 'High Impact' };
-    if (total > average * 0.8) return { emoji: '🟡', text: 'Moderate Impact' };
+    if (total > 15) return { emoji: '🔴', text: 'Very High Impact' };
+    if (total > 10) return { emoji: '🟠', text: 'High Impact' };
+    if (total > 6) return { emoji: '🟡', text: 'Moderate Impact' };
     return { emoji: '🟢', text: 'Low Impact' };
   };
 
@@ -212,14 +212,14 @@ const Calculator = () => {
     }
     
     // Overall assessment
-    if (total > average * 1.5) {
-      tips.push('Your footprint is significantly above average. Focus on the biggest impact areas: transport and diet');
-    } else if (total > average) {
-      tips.push('Your footprint is above average - focus on the biggest impact areas first');
-    } else if (total < average * 0.7) {
-      tips.push('Excellent! You\'re well below the global average. Consider sharing your sustainable practices with others');
+    if (total > 15) {
+      tips.push('Your footprint is very high. Focus on the biggest impact areas: transport and diet');
+    } else if (total > 10) {
+      tips.push('Your footprint is high - focus on the biggest impact areas first');
+    } else if (total > 6) {
+      tips.push('Your footprint is moderate. Consider making small improvements in transport and diet');
     } else {
-      tips.push('Good job! You\'re below the global average. Keep up the good work!');
+      tips.push('Excellent! You have a low carbon footprint. Consider sharing your sustainable practices with others');
     }
     
     return tips;
