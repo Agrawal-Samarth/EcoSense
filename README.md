@@ -145,7 +145,7 @@ The carbon footprint calculator uses scientifically-based emission factors:
 
 ## 📄 License
 
-This project is a private repository and is not licensed under any open-source license. All rights reserved. Access is restricted to authorized users only.
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 ## 🙏 Acknowledgments
 
