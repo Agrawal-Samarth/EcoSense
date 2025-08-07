@@ -13,7 +13,9 @@ A modern, interactive website for understanding and calculating ecological footp
 
 ## 🚀 Live Demo
 
-Visit the live website: [EcoSense](https://yourusername.github.io/ecosense)
+Visit the live website: [EcoSense](https://IND-GAMINGBEAST.github.io/EcoSense)
+
+**Note**: This is a private repository. Access is restricted to authorized users only.
 
 ## 🛠️ Technologies Used
 
@@ -28,8 +30,10 @@ Visit the live website: [EcoSense](https://yourusername.github.io/ecosense)
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/yourusername/ecosense.git
-   cd ecosense
+   # Note: This is a private repository
+   # You need appropriate permissions to clone this repository
+   git clone https://github.com/IND-GAMINGBEAST/EcoSense.git
+   cd EcoSense
    ```
 
 2. **Install dependencies**
@@ -141,7 +145,7 @@ The carbon footprint calculator uses scientifically-based emission factors:
 
 ## 📄 License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+This project is a private repository and is not licensed under any open-source license. All rights reserved. Access is restricted to authorized users only.
 
 ## 🙏 Acknowledgments
 
