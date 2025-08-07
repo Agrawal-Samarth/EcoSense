@@ -75,13 +75,13 @@ const Calculator = () => {
   ];
 
   const dietOptions = [
-    { value: 'vegan', label: 'Vegan', factor: 1.5 },
-    { value: 'vegetarian', label: 'Vegetarian', factor: 2.0 },
-    { value: 'pescatarian', label: 'Pescatarian', factor: 2.5 },
-    { value: 'low-meat', label: 'Low Meat (1-2x/week)', factor: 3.2 },
-    { value: 'omnivore', label: 'Regular Omnivore', factor: 3.8 },
-    { value: 'high-meat', label: 'High Meat (daily)', factor: 4.5 },
-    { value: 'beef-heavy', label: 'Beef-Heavy Diet', factor: 6.2 },
+    { value: 'vegan', label: 'Vegan', factor: 0.3 },
+    { value: 'vegetarian', label: 'Vegetarian', factor: 0.4 },
+    { value: 'pescatarian', label: 'Pescatarian', factor: 0.6 },
+    { value: 'low-meat', label: 'Low Meat (1-2x/week)', factor: 0.8 },
+    { value: 'omnivore', label: 'Regular Omnivore', factor: 1.2 },
+    { value: 'high-meat', label: 'High Meat (daily)', factor: 1.8 },
+    { value: 'beef-heavy', label: 'Beef-Heavy Diet', factor: 2.5 },
   ];
 
   const calculateFootprint = (data) => {
@@ -94,7 +94,7 @@ const Calculator = () => {
       
       // Calculate CO2 emissions (tons per year)
       const transportCO2 = (transport.factor * data.transportHours * 52) / 1000;
-      const dietCO2 = diet.factor * 12;
+      const dietCO2 = diet.factor; // Diet factor is already in tons per year
       const energyCO2 = (data.energyUsage * 0.5) / 12; // Assuming 0.5 kg CO2 per kWh
       const digitalCO2 = (data.digitalUsage * 0.1 * 365) / 1000; // Rough estimate
       
@@ -151,16 +151,16 @@ const Calculator = () => {
   };
 
   const getFootprintColor = (total, average) => {
-    if (total > 15) return 'text-red-500'; // Very high - red (above 15 tons)
-    if (total > 10) return 'text-orange-500'; // High - orange (above 10 tons)
-    if (total > 6) return 'text-yellow-500'; // Moderate - yellow (above 6 tons)
-    return 'text-green-500'; // Low - green (6 tons or below)
+    if (total > 8) return 'text-red-500'; // Very high - red (above 8 tons)
+    if (total > 6) return 'text-orange-500'; // High - orange (above 6 tons)
+    if (total > 4) return 'text-yellow-500'; // Moderate - yellow (above 4 tons)
+    return 'text-green-500'; // Low - green (4 tons or below)
   };
 
   const getFootprintStatus = (total, average) => {
-    if (total > 15) return { emoji: '🔴', text: 'Very High Impact' };
-    if (total > 10) return { emoji: '🟠', text: 'High Impact' };
-    if (total > 6) return { emoji: '🟡', text: 'Moderate Impact' };
+    if (total > 8) return { emoji: '🔴', text: 'Very High Impact' };
+    if (total > 6) return { emoji: '🟠', text: 'High Impact' };
+    if (total > 4) return { emoji: '🟡', text: 'Moderate Impact' };
     return { emoji: '🟢', text: 'Low Impact' };
   };
 
@@ -212,11 +212,11 @@ const Calculator = () => {
     }
     
     // Overall assessment
-    if (total > 15) {
+    if (total > 8) {
       tips.push('Your footprint is very high. Focus on the biggest impact areas: transport and diet');
-    } else if (total > 10) {
-      tips.push('Your footprint is high - focus on the biggest impact areas first');
     } else if (total > 6) {
+      tips.push('Your footprint is high - focus on the biggest impact areas first');
+    } else if (total > 4) {
       tips.push('Your footprint is moderate. Consider making small improvements in transport and diet');
     } else {
       tips.push('Excellent! You have a low carbon footprint. Consider sharing your sustainable practices with others');
