@@ -661,7 +661,7 @@ const About = () => {
             className="text-center"
           >
             <h1 className="text-5xl md:text-6xl font-bold mb-6">
-              Understanding <span className="text-emerald-200">Eco Footprints</span>
+              Understanding <span className="text-emerald-200">Ecological Footprints</span>
             </h1>
             <p className="text-xl md:text-2xl text-white/90 max-w-4xl mx-auto leading-relaxed">
               Learn about ecological footprints, Sustainable Development Goals, and discover how your choices impact our planet.
@@ -670,7 +670,7 @@ const About = () => {
         </div>
       </section>
 
-      {/* What is Eco Footprint */}
+              {/* What is Ecological Footprint */}
       <section className="section-padding bg-gradient-eco">
         <div className="container-custom">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
@@ -684,7 +684,7 @@ const About = () => {
                 What is an <span className="text-gradient">Ecological Footprint?</span>
               </h2>
               <p className="text-lg text-gray-600 mb-6 leading-relaxed">
-                Ecological footprint (EF), abbreviated to Eco Footprint, is a measure of the demands made by a person or group of people on global natural resources. It has become one of the most widely used measures of humanity's effect upon the environment and has been used to highlight both the apparent unsustainability of current practices and the inequalities in resource consumption between and within countries.
+                Ecological footprint (EF) is a measure of the demands made by a person or group of people on global natural resources. It has become one of the most widely used measures of humanity's effect upon the environment and has been used to highlight both the apparent unsustainability of current practices and the inequalities in resource consumption between and within countries.
               </p>
               <p className="text-sm text-gray-500 italic">
                 — Britannica
@@ -820,7 +820,7 @@ const About = () => {
             className="mt-12 text-center"
           >
             <div className="glass-card p-8 max-w-4xl mx-auto">
-              <h3 className="text-2xl font-bold text-white mb-4">How SDGs Connect to Eco Footprints</h3>
+              <h3 className="text-2xl font-bold text-white mb-4">How SDGs Connect to Ecological Footprints</h3>
               <p className="text-gray-300 leading-relaxed">
                 The Sustainable Development Goals are deeply interconnected with ecological footprints. Goals like 
                 <span className="text-emerald-400 font-semibold"> Climate Action (13)</span>, 

@@ -495,13 +495,13 @@ const Home = () => {
                   exit={{ opacity: 0, y: -30 }}
                   transition={{ duration: 0.8 }}
                 >
-                  <h1 className="text-5xl md:text-7xl font-bold mb-6 text-white leading-tight">
+                  <h1 className="text-3xl sm:text-5xl md:text-7xl font-bold mb-6 text-white leading-tight">
                     Our Planet is in
                     <br />
                     <span className="text-red-300">Danger</span>
                   </h1>
                   
-                  <p className="text-xl md:text-2xl text-white/90 mb-8 max-w-4xl mx-auto leading-relaxed">
+                  <p className="text-lg sm:text-xl md:text-2xl text-white/90 mb-8 max-w-4xl mx-auto leading-relaxed px-4">
                     Watch this video to understand the <span className="text-red-300 font-semibold">urgent reality</span> of climate change, 
                     then discover how you can make a difference.
                   </p>
@@ -513,13 +513,13 @@ const Home = () => {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.8 }}
                 >
-                  <h1 className="text-5xl md:text-7xl font-bold mb-6 text-white leading-tight">
+                  <h1 className="text-3xl sm:text-5xl md:text-7xl font-bold mb-6 text-white leading-tight">
                     The Time to
                     <br />
                     <span className="text-emerald-300">Act is Now</span>
                   </h1>
                   
-                  <p className="text-xl md:text-2xl text-white/90 mb-8 max-w-4xl mx-auto leading-relaxed">
+                  <p className="text-lg sm:text-xl md:text-2xl text-white/90 mb-8 max-w-4xl mx-auto leading-relaxed px-4">
                     Every second counts in the fight against climate change. 
                     <span className="text-emerald-300 font-semibold"> Scroll down</span> to learn more and take action.
                   </p>
@@ -555,15 +555,15 @@ const Home = () => {
             viewport={{ once: true }}
             className="text-center mb-16"
           >
-            <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-6">
               The <span className="text-red-300">Urgent Reality</span>
             </h2>
-            <p className="text-xl text-white/80 max-w-3xl mx-auto">
+            <p className="text-lg sm:text-xl text-white/80 max-w-3xl mx-auto px-4">
               These numbers show why immediate action is critical for our planet's survival.
             </p>
           </motion.div>
 
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
             {urgencyStats.map((stat, index) => (
               <motion.div
                 key={index}
@@ -571,13 +571,13 @@ const Home = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: index * 0.2 }}
                 viewport={{ once: true }}
-                className="glass-card p-8 text-center group hover:scale-105 transition-transform duration-300 cursor-pointer"
+                className="glass-card p-6 sm:p-8 text-center group hover:scale-105 transition-transform duration-300 cursor-pointer"
                 onClick={() => setSelectedModal(stat.details)}
               >
                 <div className={`w-16 h-16 bg-red-500/20 rounded-2xl flex items-center justify-center text-red-300 mb-6 mx-auto group-hover:scale-110 transition-transform duration-300`}>
                   {stat.icon}
                 </div>
-                <div className={`text-4xl md:text-5xl font-bold ${stat.color} mb-2`}>
+                <div className={`text-3xl sm:text-4xl md:text-5xl font-bold ${stat.color} mb-2`}>
                   {stat.number}
                 </div>
                 <p className="text-white/80 text-lg leading-relaxed mb-4">{stat.label}</p>
@@ -601,10 +601,10 @@ const Home = () => {
             viewport={{ once: true }}
             className="text-center mb-12"
           >
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-800 mb-6">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-800 mb-6">
               Calculate Your <span className="text-gradient">Carbon Footprint</span>
             </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+            <p className="text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto px-4">
               Discover your environmental impact and see how you compare to the global average. 
               Every calculation helps you understand your role in climate change.
             </p>
@@ -620,14 +620,14 @@ const Home = () => {
           >
             <div className="text-center mb-8">
               <Calculator className="w-12 h-12 text-emerald-500 mx-auto mb-4" />
-              <h3 className="text-2xl font-bold text-gray-800 mb-2">Your Lifestyle Impact</h3>
+              <h3 className="text-xl sm:text-2xl font-bold text-gray-800 mb-2">Your Lifestyle Impact</h3>
               <p className="text-gray-600">Answer a few questions to calculate your carbon footprint</p>
             </div>
 
             {/* Simple Calculator Form */}
             {!calculatorResult ? (
               <div className="space-y-6">
-                <div className="grid md:grid-cols-2 gap-6">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-2">
                       Primary Transport
@@ -660,7 +660,7 @@ const Home = () => {
                   </div>
                 </div>
 
-                <div className="grid md:grid-cols-2 gap-6">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-2">
                       Monthly Energy Usage (kWh)
@@ -698,10 +698,10 @@ const Home = () => {
               </div>
             ) : (
               <div className="text-center space-y-6">
-                <div className={`text-6xl font-bold ${calculatorResult.color}`}>
+                <div className={`text-4xl sm:text-6xl font-bold ${calculatorResult.color}`}>
                   {calculatorResult.total} tons CO₂/year
                 </div>
-                <div className={`text-2xl font-semibold ${calculatorResult.color}`}>
+                <div className={`text-xl sm:text-2xl font-semibold ${calculatorResult.color}`}>
                   {calculatorResult.category} Impact
                 </div>
                 <p className="text-gray-600 text-lg">{calculatorResult.message}</p>

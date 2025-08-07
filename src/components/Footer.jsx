@@ -18,7 +18,7 @@ const Footer = () => {
   const footerLinks = {
     product: [
       { name: 'Calculator', path: '/calculator' },
-      { name: 'About Eco Footprint', path: '/about' },
+      { name: 'About EcoSense', path: '/about' },
       { name: 'School Corner', path: '/school-corner' },
       { name: 'Credits', path: '/credits' }
     ],

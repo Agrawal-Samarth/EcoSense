@@ -102,7 +102,7 @@ const Team = () => {
             </div>
             <div>
               <h3 className="font-semibold text-gray-800 mb-2">Competition</h3>
-              <p className="text-gray-600">T04B - Eco Footprint</p>
+                              <p className="text-gray-600">T04B - EcoSense</p>
             </div>
             <div>
               <h3 className="font-semibold text-gray-800 mb-2">Team Size</h3>
@@ -191,7 +191,7 @@ const Team = () => {
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold text-gray-800 mb-4">Project Overview</h2>
             <p className="text-lg text-gray-600">
-              Our approach to creating an impactful eco footprint website
+              Our approach to creating an impactful environmental education platform
             </p>
           </div>
 
