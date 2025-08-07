@@ -15,7 +15,7 @@ A modern, interactive website for understanding and calculating ecological footp
 
 Visit the live website: [EcoSense](https://IND-GAMINGBEAST.github.io/EcoSense)
 
-**Note**: This is a private repository. Access is restricted to authorized users only.
+**Note**: This project is licensed under the MIT License—see the [LICENSE](LICENSE) file for details.
 
 ## 🛠️ Technologies Used
 
@@ -30,8 +30,7 @@ Visit the live website: [EcoSense](https://IND-GAMINGBEAST.github.io/EcoSense)
 
 1. **Clone the repository**
    ```bash
-   # Note: This is a private repository
-   # You need appropriate permissions to clone this repository
+   # This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
    git clone https://github.com/IND-GAMINGBEAST/EcoSense.git
    cd EcoSense
    ```
