@@ -31,7 +31,7 @@ const Home = () => {
   const [calculatorResults, setCalculatorResults] = useState(null);
   const [showDangerText, setShowDangerText] = useState(true);
   const [hasScrolled, setHasScrolled] = useState(false);
-  const [isVideoPlaying, setIsVideoPlaying] = useState(false);
+
   const [selectedModal, setSelectedModal] = useState(null);
   const [calculatorData, setCalculatorData] = useState({
     transport: 'Car',
@@ -61,42 +61,11 @@ const Home = () => {
     if (!hasScrolled) {
       const timer = setTimeout(() => {
         setShowDangerText(false);
-        setIsVideoPlaying(true);
       }, 3000);
 
       return () => clearTimeout(timer);
     }
   }, [hasScrolled]);
-
-  // Handle video autoplay for mobile devices
-  useEffect(() => {
-    const handleUserInteraction = () => {
-      setIsVideoPlaying(true);
-      document.removeEventListener('touchstart', handleUserInteraction);
-      document.removeEventListener('click', handleUserInteraction);
-    };
-
-    // Check if device is mobile
-    const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
-    
-    if (isMobile) {
-      // On mobile, start video on first interaction
-      document.addEventListener('touchstart', handleUserInteraction);
-      document.addEventListener('click', handleUserInteraction);
-    } else {
-      // On desktop, start video after delay
-      const timer = setTimeout(() => {
-        setIsVideoPlaying(true);
-      }, 1000);
-      
-      return () => clearTimeout(timer);
-    }
-
-    return () => {
-      document.removeEventListener('touchstart', handleUserInteraction);
-      document.removeEventListener('click', handleUserInteraction);
-    };
-  }, []);
 
   const urgencyStats = [
     { 
@@ -472,32 +441,15 @@ const Home = () => {
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
         {/* Video Background */}
         <div className="absolute inset-0 w-full h-full">
-          <video
+          <iframe
             className="w-full h-full object-cover"
-            autoPlay={isVideoPlaying}
-            muted
-            loop
-            playsInline
-            webkit-playsinline="true"
-            x5-playsinline="true"
-            x5-video-player-type="h5"
-            x5-video-player-fullscreen="true"
-            preload="auto"
-            poster="https://images.unsplash.com/photo-1569163139394-de4e1c312ffa?w=1920&h=1080&fit=crop"
-            onError={(e) => {
-              console.log('Video failed to load, showing fallback image');
-              e.target.style.display = 'none';
-            }}
-            onLoadStart={() => {
-              console.log('Video loading started');
-            }}
-            onCanPlay={() => {
-              console.log('Video can play');
-            }}
-          >
-            <source src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4" type="video/mp4" />
-            {/* Fallback background image */}
-          </video>
+            src="https://www.youtube.com/embed/FwffWklpDT0?autoplay=1&mute=1&loop=1&playlist=FwffWklpDT0&controls=0&showinfo=0&rel=0&modestbranding=1&playsinline=1&enablejsapi=1&start=0&end=60"
+            title="Climate Change Video"
+            frameBorder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowFullScreen
+            style={{ pointerEvents: 'none' }}
+          />
           {/* Fallback background image for when video doesn't load */}
           <div 
             className="absolute inset-0 w-full h-full bg-cover bg-center"
@@ -557,7 +509,7 @@ const Home = () => {
                   </h1>
                   
                   <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-white/90 mb-6 sm:mb-8 max-w-4xl mx-auto leading-relaxed px-4">
-                    Watch this video to understand the <span className="text-red-300 font-semibold">urgent reality</span> of climate change, 
+                    Watch this climate change video to understand the <span className="text-red-300 font-semibold">urgent reality</span> of our planet, 
                     then discover how you can make a difference.
                   </p>
                 </motion.div>
