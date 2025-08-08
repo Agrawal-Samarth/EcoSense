@@ -454,7 +454,8 @@ const Home = () => {
             preload="auto"
             poster="https://images.unsplash.com/photo-1569163139394-de4e1c312ffa?w=1920&h=1080&fit=crop"
             onError={(e) => {
-              console.log('Video failed to load, showing fallback image');
+              console.log('Video failed to load:', e.target.error);
+              console.log('Video src:', e.target.src);
               e.target.style.display = 'none';
             }}
             onLoadStart={() => {
@@ -463,8 +464,11 @@ const Home = () => {
             onCanPlay={() => {
               console.log('Video can play');
             }}
+            onLoad={() => {
+              console.log('Video loaded successfully');
+            }}
           >
-            <source src="/EcoSense/videos/climate-change-video.mp4" type="video/mp4" />
+            <source src="videos/climate-change-video.mp4" type="video/mp4" />
             {/* Fallback background image */}
           </video>
           {/* Fallback background image for when video doesn't load */}
