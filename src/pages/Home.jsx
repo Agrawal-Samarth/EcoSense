@@ -441,15 +441,32 @@ const Home = () => {
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
         {/* Video Background */}
         <div className="absolute inset-0 w-full h-full">
-          <iframe
+          <video
             className="w-full h-full object-cover"
-            src="https://www.youtube.com/embed/FwffWklpDT0?autoplay=1&mute=1&loop=1&playlist=FwffWklpDT0&controls=0&showinfo=0&rel=0&modestbranding=1&playsinline=1&enablejsapi=1&start=0&end=60"
-            title="Climate Change Video"
-            frameBorder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowFullScreen
-            style={{ pointerEvents: 'none' }}
-          />
+            autoPlay
+            muted
+            loop
+            playsInline
+            webkit-playsinline="true"
+            x5-playsinline="true"
+            x5-video-player-type="h5"
+            x5-video-player-fullscreen="true"
+            preload="auto"
+            poster="https://images.unsplash.com/photo-1569163139394-de4e1c312ffa?w=1920&h=1080&fit=crop"
+            onError={(e) => {
+              console.log('Video failed to load, showing fallback image');
+              e.target.style.display = 'none';
+            }}
+            onLoadStart={() => {
+              console.log('Video loading started');
+            }}
+            onCanPlay={() => {
+              console.log('Video can play');
+            }}
+          >
+            <source src="/videos/climate-change-video.mp4" type="video/mp4" />
+            {/* Fallback background image */}
+          </video>
           {/* Fallback background image for when video doesn't load */}
           <div 
             className="absolute inset-0 w-full h-full bg-cover bg-center"
