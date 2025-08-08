@@ -464,7 +464,7 @@ const Home = () => {
               console.log('Video can play');
             }}
           >
-            <source src="/videos/climate-change-video.mp4" type="video/mp4" />
+            <source src="/EcoSense/videos/climate-change-video.mp4" type="video/mp4" />
             {/* Fallback background image */}
           </video>
           {/* Fallback background image for when video doesn't load */}
