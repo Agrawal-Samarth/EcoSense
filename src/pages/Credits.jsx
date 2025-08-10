@@ -454,7 +454,7 @@ const Credits = () => {
                     <span>View on GitHub</span>
                   </a>
                   <a 
-                    href="/EcoSense/LICENSE"
+                    href="./LICENSE"
                     className="inline-flex items-center text-gray-600 hover:text-gray-700 transition-colors"
                   >
                     <FileText className="w-5 h-5 mr-2" />
