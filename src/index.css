@@ -254,6 +254,22 @@
     color: rgb(255 255 255);
   }
 
+  /* Chatbot specific dark mode styles */
+  .dark .chatbot-message {
+    background-color: rgb(51 65 85);
+    color: rgb(241 245 249);
+  }
+
+  .dark .chatbot-input {
+    background-color: rgb(30 41 59);
+    border-color: rgb(71 85 105);
+    color: rgb(255 255 255);
+  }
+
+  .dark .chatbot-input::placeholder {
+    color: rgb(148 163 184);
+  }
+
   /* Dark mode modal and popup styles */
   .dark .bg-white {
     background-color: rgb(30 41 59);

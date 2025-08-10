@@ -3,6 +3,7 @@ import { AnimatePresence } from 'framer-motion';
 import { useEffect } from 'react';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
+import Chatbot from './components/Chatbot';
 import Home from './pages/Home';
 import About from './pages/About';
 import SchoolCorner from './pages/SchoolCorner';
@@ -37,6 +38,7 @@ function App() {
           </AnimatePresence>
         </main>
         <Footer />
+        <Chatbot />
       </div>
     </Router>
   );

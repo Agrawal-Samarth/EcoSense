@@ -445,7 +445,7 @@ const Credits = () => {
                 </p>
                 <div className="flex items-center justify-center space-x-4">
                   <a 
-                    href="https://github.com/your-repo/eco-footprint"
+                    href="https://github.com/IND-GAMINGBEAST/EcoSense"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="inline-flex items-center text-blue-600 hover:text-blue-700 transition-colors"
@@ -454,7 +454,7 @@ const Credits = () => {
                     <span>View on GitHub</span>
                   </a>
                   <a 
-                    href="/LICENSE"
+                    href="/EcoSense/LICENSE"
                     className="inline-flex items-center text-gray-600 hover:text-gray-700 transition-colors"
                   >
                     <FileText className="w-5 h-5 mr-2" />

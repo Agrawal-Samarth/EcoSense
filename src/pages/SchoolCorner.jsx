@@ -30,6 +30,7 @@ import {
 
 const SchoolCorner = () => {
   const [selectedBlog, setSelectedBlog] = useState(null);
+  const [rating, setRating] = useState(0);
 
   const schoolInitiatives = [
     {
@@ -189,21 +190,21 @@ const SchoolCorner = () => {
   const upcomingEvents = [
     {
       title: "Tree Plantation Drive",
-      date: "April 5, 2024",
+      date: "September 5, 2025",
       time: "9:00 AM",
       location: "School Ground",
       description: "Join us in planting 100 saplings to celebrate Earth Day"
     },
     {
       title: "Environmental Quiz Competition",
-      date: "April 12, 2024",
+      date: "September 12, 2025",
       time: "2:00 PM",
       location: "School Auditorium",
       description: "Test your knowledge about environmental issues and win prizes"
     },
     {
       title: "Waste Management Workshop",
-      date: "April 20, 2024",
+      date: "September 20, 2025",
       time: "10:00 AM",
       location: "Science Lab",
       description: "Learn about composting and waste segregation techniques"
@@ -300,10 +301,10 @@ const SchoolCorner = () => {
 
                 {/* Related Topics */}
                 <div className="mb-6">
-                  <h4 className="font-semibold text-gray-800 mb-2">Related Topics:</h4>
+                  <h4 className="font-semibold text-black mb-2">Related Topics:</h4>
                   <div className="flex flex-wrap gap-2">
                     {blog.fullContent.relatedTopics.map((topic, index) => (
-                      <span key={index} className="px-3 py-1 bg-emerald-100 text-emerald-700 rounded-full text-sm">
+                      <span key={index} className="px-3 py-1 bg-emerald-100 dark:bg-emerald-900 text-emerald-800 dark:text-emerald-200 rounded-full text-sm font-medium border border-emerald-300 dark:border-emerald-700">
                         {topic}
                       </span>
                     ))}
@@ -713,12 +714,22 @@ const SchoolCorner = () => {
                       <button
                         key={star}
                         type="button"
-                        className="text-3xl text-gray-300 hover:text-yellow-400 transition-colors focus:outline-none"
+                        onClick={() => setRating(star)}
+                        className={`text-3xl transition-colors focus:outline-none ${
+                          star <= rating 
+                            ? 'text-yellow-400' 
+                            : 'text-gray-300 hover:text-yellow-400'
+                        }`}
                       >
                         ★
                       </button>
                     ))}
                   </div>
+                  {rating > 0 && (
+                    <p className="text-sm text-gray-600 mt-2">
+                      You rated: {rating} star{rating > 1 ? 's' : ''}
+                    </p>
+                  )}
                 </div>
 
                 <div>
