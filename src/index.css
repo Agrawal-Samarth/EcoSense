@@ -15,6 +15,351 @@
     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     min-height: 100vh;
     color: #1f2937;
+    transition: background 0.3s ease;
+  }
+
+  /* Dark mode styles */
+  .dark body {
+    background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%);
+    color: #f8fafc;
+  }
+
+  /* Dark mode text colors */
+  .dark h1, .dark h2, .dark h3, .dark h4, .dark h5, .dark h6 {
+    color: rgb(255 255 255);
+  }
+
+  .dark p, .dark span, .dark div {
+    color: rgb(241 245 249);
+  }
+
+  /* Dark mode cards with stunning glass effect */
+  .dark .card {
+    background-color: rgb(30 41 59 / 0.4);
+    backdrop-filter: blur(24px);
+    border-radius: 1rem;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(148, 163, 184, 0.1);
+    transition: all 0.5s;
+    padding: 2rem;
+    border: 1px solid rgb(71 85 105 / 0.3);
+  }
+
+  .dark .card:hover {
+    border-color: rgb(100 116 139 / 0.5);
+    box-shadow: 0 35px 60px -12px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(148, 163, 184, 0.2);
+  }
+
+  /* Dark mode glass cards */
+  .dark .glass-card {
+    background-color: rgb(30 41 59 / 0.2);
+    backdrop-filter: blur(24px);
+    border-radius: 1rem;
+    border: 1px solid rgb(71 85 105 / 0.2);
+    box-shadow: 0 20px 40px -12px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(148, 163, 184, 0.1);
+    transition: all 0.5s;
+  }
+
+  .dark .glass-card:hover {
+    border-color: rgb(100 116 139 / 0.4);
+    box-shadow: 0 30px 50px -12px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(148, 163, 184, 0.2);
+  }
+
+  /* Dark mode form inputs with beautiful styling */
+  .dark .form-input {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border-radius: 0.75rem;
+    border: 2px solid rgb(71 85 105 / 0.5);
+    outline: none;
+    transition: all 0.3s;
+    background-color: rgb(30 41 59 / 0.6);
+    backdrop-filter: blur(4px);
+    color: rgb(255 255 255);
+    box-shadow: inset 0 2px 4px 0 rgba(0, 0, 0, 0.1);
+  }
+
+  .dark .form-input:focus {
+    border-color: rgb(74 222 128);
+    box-shadow: 0 0 0 3px rgba(74, 222, 128, 0.1), inset 0 2px 4px 0 rgba(0, 0, 0, 0.1);
+  }
+
+  .dark .form-input::placeholder {
+    color: rgb(148 163 184);
+  }
+
+  .dark .form-select {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border-radius: 0.75rem;
+    border: 2px solid rgb(71 85 105 / 0.5);
+    outline: none;
+    transition: all 0.3s;
+    background-color: rgb(30 41 59 / 0.6);
+    backdrop-filter: blur(4px);
+    appearance: none;
+    color: rgb(255 255 255);
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%23cbd5e1' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='m6 8 4 4 4-4'/%3e%3c/svg%3e");
+    background-position: right 0.5rem center;
+    background-repeat: no-repeat;
+    background-size: 1.5em 1.5em;
+    padding-right: 2.5rem;
+    box-shadow: inset 0 2px 4px 0 rgba(0, 0, 0, 0.1);
+  }
+
+  .dark .form-select:focus {
+    border-color: rgb(74 222 128);
+    box-shadow: 0 0 0 3px rgba(74, 222, 128, 0.1), inset 0 2px 4px 0 rgba(0, 0, 0, 0.1);
+  }
+
+  /* Dark mode buttons */
+  .dark .btn-primary {
+    background: linear-gradient(to right, rgb(16 185 129), rgb(13 148 136));
+    color: rgb(255 255 255);
+    font-weight: 600;
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.75rem;
+    transition: all 0.3s;
+    box-shadow: 0 10px 25px -5px rgba(16, 185, 129, 0.3);
+    transform: scale(1);
+  }
+
+  .dark .btn-primary:hover {
+    background: linear-gradient(to right, rgb(5 150 105), rgb(15 118 110));
+    box-shadow: 0 15px 35px -5px rgba(16, 185, 129, 0.4);
+    transform: scale(1.05);
+  }
+
+  .dark .btn-secondary {
+    background-color: rgb(51 65 85 / 0.8);
+    backdrop-filter: blur(4px);
+    color: rgb(255 255 255);
+    border: 2px solid rgb(74 222 128);
+    font-weight: 600;
+    padding: 1rem 2rem;
+    border-radius: 0.75rem;
+    transition: all 0.3s;
+    transform: scale(1);
+    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+  }
+
+  .dark .btn-secondary:hover {
+    background-color: rgb(71 85 105 / 0.8);
+    transform: scale(1.05);
+    box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1);
+  }
+
+  .dark .btn-outline {
+    background-color: transparent;
+    border: 2px solid rgb(74 222 128 / 0.8);
+    color: rgb(110 231 183);
+    font-weight: 600;
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.5rem;
+    transition: all 0.3s;
+    transform: scale(1);
+    backdrop-filter: blur(4px);
+  }
+
+  .dark .btn-outline:hover {
+    background-color: rgb(74 222 128 / 0.1);
+    transform: scale(1.05);
+  }
+
+  /* Dark mode navigation */
+  .dark nav {
+    background-color: rgb(15 23 42 / 0.8);
+    backdrop-filter: blur(24px);
+    border-bottom: 1px solid rgb(51 65 85 / 0.5);
+  }
+
+  /* Dark mode links */
+  .dark a {
+    color: rgb(226 232 240);
+    transition: color 0.3s;
+  }
+
+  .dark a:hover {
+    color: rgb(255 255 255);
+  }
+
+  /* Dark mode text color overrides for better visibility */
+  .dark .text-emerald-600 {
+    color: rgb(110 231 183);
+  }
+
+  .dark .text-emerald-500 {
+    color: rgb(110 231 183);
+  }
+
+  .dark .text-emerald-400 {
+    color: rgb(134 239 172);
+  }
+
+  .dark .text-teal-600 {
+    color: rgb(94 234 212);
+  }
+
+  .dark .text-teal-500 {
+    color: rgb(94 234 212);
+  }
+
+  .dark .text-teal-400 {
+    color: rgb(45 212 191);
+  }
+
+  /* Ensure all text is visible in dark mode */
+  .dark h1, .dark h2, .dark h3, .dark h4, .dark h5, .dark h6 {
+    color: rgb(255 255 255);
+  }
+
+  .dark p, .dark span, .dark div, .dark li {
+    color: rgb(241 245 249);
+  }
+
+  /* Dark mode glass card text */
+  .dark .glass-card h1, .dark .glass-card h2, .dark .glass-card h3,
+  .dark .glass-card h4, .dark .glass-card h5, .dark .glass-card h6 {
+    color: rgb(255 255 255);
+  }
+
+  .dark .glass-card p, .dark .glass-card span, .dark .glass-card div {
+    color: rgb(241 245 249);
+  }
+
+  /* Dark mode card text */
+  .dark .card h1, .dark .card h2, .dark .card h3,
+  .dark .card h4, .dark .card h5, .dark .card h6 {
+    color: rgb(255 255 255);
+  }
+
+  .dark .card p, .dark .card span, .dark .card div {
+    color: rgb(241 245 249);
+  }
+
+  /* Force text visibility in dark mode for any problematic sections */
+  .dark .text-gray-600, .dark .text-gray-700, .dark .text-gray-800 {
+    color: rgb(226 232 240);
+  }
+
+  .dark .text-gray-500 {
+    color: rgb(203 213 225);
+  }
+
+  .dark .text-gray-400 {
+    color: rgb(148 163 184);
+  }
+
+  /* Ensure black text is visible in dark mode */
+  .dark .text-black {
+    color: rgb(255 255 255);
+  }
+
+  /* Dark mode modal and popup styles */
+  .dark .bg-white {
+    background-color: rgb(30 41 59);
+  }
+
+  .dark .bg-gray-50 {
+    background-color: rgb(51 65 85);
+  }
+
+  .dark .bg-gray-100 {
+    background-color: rgb(71 85 105);
+  }
+
+  /* Modal content dark mode */
+  .dark .modal-content,
+  .dark [class*="modal"],
+  .dark [class*="popup"] {
+    background-color: rgb(30 41 59);
+    border-color: rgb(71 85 105);
+  }
+
+  /* Modal text dark mode */
+  .dark .modal-content h1, .dark .modal-content h2, .dark .modal-content h3,
+  .dark .modal-content h4, .dark .modal-content h5, .dark .modal-content h6,
+  .dark [class*="modal"] h1, .dark [class*="modal"] h2, .dark [class*="modal"] h3,
+  .dark [class*="modal"] h4, .dark [class*="modal"] h5, .dark [class*="modal"] h6 {
+    color: rgb(255 255 255);
+  }
+
+  .dark .modal-content p, .dark .modal-content span, .dark .modal-content div,
+  .dark [class*="modal"] p, .dark [class*="modal"] span, .dark [class*="modal"] div {
+    color: rgb(241 245 249);
+  }
+
+  /* Modal close button dark mode */
+  .dark .modal-content button, .dark [class*="modal"] button {
+    color: rgb(203 213 225);
+  }
+  
+  .dark .modal-content button:hover, .dark [class*="modal"] button:hover {
+    color: rgb(255 255 255);
+    background-color: rgb(51 65 85);
+  }
+
+  /* Modal backdrop dark mode */
+  .dark .bg-black\/60 {
+    background-color: rgb(0 0 0 / 0.8);
+  }
+
+  /* Modal content background overrides for dark mode - only the actual modal box */
+  .dark .fixed .bg-white:not(.fixed),
+  .dark .modal .bg-white,
+  .dark [class*="modal"] .bg-white:not(.fixed),
+  .dark .popup .bg-white {
+    background-color: rgb(30 41 59) !important;
+  }
+
+  /* Modal border overrides for dark mode */
+  .dark .fixed .border-white\/20:not(.fixed),
+  .dark .modal .border-white\/20,
+  .dark [class*="modal"] .border-white\/20:not(.fixed) {
+    border-color: rgb(71 85 105) !important;
+  }
+
+  /* Specific modal content targeting - exclude backdrop */
+  .dark .fixed.inset-0 .bg-white:not(.fixed) {
+    background-color: rgb(30 41 59) !important;
+  }
+
+  /* Modal text color overrides */
+  .dark .text-gray-800 {
+    color: rgb(255 255 255);
+  }
+
+  .dark .text-gray-600 {
+    color: rgb(226 232 240);
+  }
+
+  .dark .text-gray-700 {
+    color: rgb(241 245 249);
+  }
+
+  /* Modal button hover states */
+  .dark .hover\:bg-gray-100:hover {
+    background-color: rgb(51 65 85);
+  }
+
+  /* Dark mode specific text highlights */
+  /* Removed circular dependencies - these classes already have the correct styling */
+
+  /* Dark mode scrollbar */
+  .dark ::-webkit-scrollbar {
+    width: 0.5rem;
+  }
+
+  .dark ::-webkit-scrollbar-track {
+    background-color: rgb(30 41 59 / 0.5);
+  }
+
+  .dark ::-webkit-scrollbar-thumb {
+    background: linear-gradient(to bottom, rgb(71 85 105), rgb(51 65 85));
+    border-radius: 9999px;
+  }
+
+  .dark ::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(to bottom, rgb(100 116 139), rgb(71 85 105));
   }
 
   * {
@@ -147,6 +492,15 @@
 
   .shadow-glow {
     box-shadow: 0 0 20px rgba(16, 185, 129, 0.3);
+  }
+
+  /* Dark mode variants for gradients */
+  .dark .text-gradient-hero {
+    @apply bg-gradient-to-r from-emerald-200 to-emerald-300 bg-clip-text text-transparent;
+  }
+
+  .dark .bg-gradient-eco {
+    background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%);
   }
 }
 

@@ -11,12 +11,16 @@ import {
   FileText,
   Sparkles,
   School,
-  BookOpen
+  BookOpen,
+  Award,
+  Sun,
+  Moon
 } from 'lucide-react';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [isDarkMode, setIsDarkMode] = useState(false);
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -29,10 +33,25 @@ const Navbar = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  useEffect(() => {
+    // Apply dark mode to body
+    if (isDarkMode) {
+      document.documentElement.classList.add('dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+    }
+  }, [isDarkMode]);
+
+  const toggleDarkMode = () => {
+    setIsDarkMode(!isDarkMode);
+  };
+
   const navItems = [
     { path: '/', label: 'Home', icon: <Leaf className="w-4 h-4" /> },
     { path: '/about', label: 'About', icon: <Info className="w-4 h-4" /> },
-    { path: '/school-corner', label: 'School Corner', icon: <School className="w-4 h-4" /> }
+    { path: '/school-corner', label: 'School Corner', icon: <School className="w-4 h-4" /> },
+    { path: '/calculator', label: 'Calculator', icon: <Calculator className="w-4 h-4" /> },
+    { path: '/credits', label: 'Credits', icon: <Award className="w-4 h-4" /> }
   ];
 
   return (
@@ -103,6 +122,39 @@ const Navbar = () => {
                 )}
               </Link>
             ))}
+            
+            {/* Dark Mode Toggle */}
+            <motion.button
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              onClick={toggleDarkMode}
+              className="ml-4 p-2 rounded-xl bg-white/10 backdrop-blur-md border border-white/20 text-white hover:bg-white/20 transition-colors"
+              title={isDarkMode ? "Switch to Light Mode" : "Switch to Dark Mode"}
+            >
+              <AnimatePresence mode="wait">
+                {isDarkMode ? (
+                  <motion.div
+                    key="sun"
+                    initial={{ rotate: -90, opacity: 0 }}
+                    animate={{ rotate: 0, opacity: 1 }}
+                    exit={{ rotate: 90, opacity: 0 }}
+                    transition={{ duration: 0.2 }}
+                  >
+                    <Sun className="w-5 h-5" />
+                  </motion.div>
+                ) : (
+                  <motion.div
+                    key="moon"
+                    initial={{ rotate: 90, opacity: 0 }}
+                    animate={{ rotate: 0, opacity: 1 }}
+                    exit={{ rotate: -90, opacity: 0 }}
+                    transition={{ duration: 0.2 }}
+                  >
+                    <Moon className="w-5 h-5" />
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </motion.button>
           </div>
 
           {/* CTA Button */}
@@ -220,6 +272,31 @@ const Navbar = () => {
                     }}
                   >
                     Take Quiz
+                  </button>
+                </motion.div>
+
+                {/* Mobile Dark Mode Toggle */}
+                <motion.div
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: (navItems.length + 1) * 0.1 }}
+                  className="pt-2"
+                >
+                  <button 
+                    className="w-full flex items-center justify-center space-x-3 px-4 py-3 rounded-xl bg-white/10 backdrop-blur-md border border-white/20 text-white hover:bg-white/20 transition-colors"
+                    onClick={toggleDarkMode}
+                  >
+                    {isDarkMode ? (
+                      <>
+                        <Sun className="w-5 h-5" />
+                        <span className="font-medium">Light Mode</span>
+                      </>
+                    ) : (
+                      <>
+                        <Moon className="w-5 h-5" />
+                        <span className="font-medium">Dark Mode</span>
+                      </>
+                    )}
                   </button>
                 </motion.div>
               </div>

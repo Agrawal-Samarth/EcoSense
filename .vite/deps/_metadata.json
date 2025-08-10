@@ -1,0 +1,83 @@
+{
+  "hash": "3e0c8a9b",
+  "browserHash": "a17ce808",
+  "optimized": {
+    "react": {
+      "src": "../../node_modules/react/index.js",
+      "file": "react.js",
+      "fileHash": "942a8687",
+      "needsInterop": true
+    },
+    "react-dom/client": {
+      "src": "../../node_modules/react-dom/client.js",
+      "file": "react-dom_client.js",
+      "fileHash": "b0804980",
+      "needsInterop": true
+    },
+    "react-router-dom": {
+      "src": "../../node_modules/react-router-dom/dist/index.js",
+      "file": "react-router-dom.js",
+      "fileHash": "ccda26c2",
+      "needsInterop": false
+    },
+    "framer-motion": {
+      "src": "../../node_modules/framer-motion/dist/es/index.mjs",
+      "file": "framer-motion.js",
+      "fileHash": "af6d86bc",
+      "needsInterop": false
+    },
+    "lucide-react": {
+      "src": "../../node_modules/lucide-react/dist/esm/lucide-react.mjs",
+      "file": "lucide-react.js",
+      "fileHash": "e61c4773",
+      "needsInterop": false
+    },
+    "react-hook-form": {
+      "src": "../../node_modules/react-hook-form/dist/index.esm.mjs",
+      "file": "react-hook-form.js",
+      "fileHash": "598d2e6d",
+      "needsInterop": false
+    },
+    "@hookform/resolvers/yup": {
+      "src": "../../node_modules/@hookform/resolvers/yup/dist/yup.mjs",
+      "file": "@hookform_resolvers_yup.js",
+      "fileHash": "84a7aeff",
+      "needsInterop": false
+    },
+    "yup": {
+      "src": "../../node_modules/yup/index.esm.js",
+      "file": "yup.js",
+      "fileHash": "17c5c87b",
+      "needsInterop": false
+    },
+    "chart.js": {
+      "src": "../../node_modules/chart.js/dist/chart.js",
+      "file": "chart__js.js",
+      "fileHash": "3ee78460",
+      "needsInterop": false
+    },
+    "react-chartjs-2": {
+      "src": "../../node_modules/react-chartjs-2/dist/index.js",
+      "file": "react-chartjs-2.js",
+      "fileHash": "c85f1ef1",
+      "needsInterop": false
+    }
+  },
+  "chunks": {
+    "chunk-7RD4LV7C": {
+      "file": "chunk-7RD4LV7C.js"
+    },
+    "chunk-KTKPYBYG": {
+      "file": "chunk-KTKPYBYG.js"
+    },
+    "chunk-N5HRMETL": {
+      "file": "chunk-N5HRMETL.js"
+    },
+    "chunk-P4I6WM76": {
+      "file": "chunk-P4I6WM76.js"
+    },
+    "chunk-2GTGKKMZ": {
+      "file": "chunk-2GTGKKMZ.js"
+    }
+  }
+}
