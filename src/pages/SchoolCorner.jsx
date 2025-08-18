@@ -107,23 +107,33 @@ const SchoolCorner = () => {
       }
     },
     {
-      title: "Understanding Your Ecological Footprint",
+      title: "🌏 Shrinking Our Eco Footprint: Small Steps, Big Impact",
       author: "Ms. Paran Mehta",
       date: "March 10, 2024",
-      excerpt: "Understanding your ecological footprint is one of the most powerful steps you can take toward living sustainably...",
+      excerpt: "In a world racing against environmental decline, our eco footprint is the invisible mark we leave on Earth's resources...",
       image: import.meta.env.BASE_URL + "images/teachers/paran-mehta.png",
       readTime: "5 min read",
       category: "Teacher's Perspective",
       fullContent: {
         content: `
-          <p class="mb-4">Understanding your ecological footprint is one of the most powerful steps you can take toward living sustainably. It's a measure of how much land, water, and resources you consume to support your lifestyle—everything from the food you eat and the energy you use to the clothes you wear and the waste you produce.</p>
+          <p class="mb-4">In a world racing against environmental decline, our eco footprint is the invisible mark we leave on Earth's resources. Every meal we eat, every light we switch on, every journey we take — it all adds up. The question is not if we leave a trace, but how lightly we can tread.</p>
           
-          <p class="mb-4">When our individual footprints exceed the planet's capacity to regenerate those resources, we contribute to environmental degradation, climate change, and biodiversity loss. Teaching this concept isn't just about numbers—it's about helping people see the connection between daily choices and global impact.</p>
+          <p class="mb-4">Reducing our footprint isn't about drastic overnight change; it's about mindful choices that ripple outward.</p>
           
-          <p class="mb-4">Whether it's choosing locally grown food, reducing energy use, or rethinking fast fashion, every action counts. The goal isn't guilt—it's awareness, and from awareness comes meaningful change.</p>
+          <ul class="mb-4 list-disc list-inside space-y-2 text-gray-700">
+            <li><strong>Conserve energy:</strong> Switching to LEDs, unplugging idle devices, and embracing renewable sources can dramatically cut emissions.</li>
+            <li><strong>Choose sustainable transport:</strong> Walking, cycling, or carpooling not only reduces carbon output but also boosts community connection.</li>
+            <li><strong>Mindful consumption:</strong> Opting for locally sourced goods and reducing single-use plastics lessens the strain on ecosystems.</li>
+          </ul>
           
-          <blockquote class="border-l-4 border-blue-500 pl-4 italic text-gray-600">
-            "The goal isn't guilt—it's awareness, and from awareness comes meaningful change."
+          <p class="mb-4">These actions may seem small, but multiplied across millions of lives, they shape a greener future. Think of it as a collective footprint makeover — where conscious living becomes a shared identity.</p>
+          
+          <p class="mb-4">Our planet is not an endless reservoir; it's a delicate home that thrives on balance. By tracking and trimming our eco footprint, we're not just protecting landscapes and wildlife — we're safeguarding the well-being of future generations.</p>
+          
+          <p class="mb-4">The journey begins with a single step, and the best time to take it is now. Let's walk lighter, live wiser, and leave behind a legacy of care, not consumption.</p>
+          
+          <blockquote class="border-l-4 border-emerald-500 pl-4 italic text-gray-600">
+            "The journey begins with a single step, and the best time to take it is now."
           </blockquote>
         `,
         tags: ["Education", "Environmental Teaching", "Student Engagement", "Sustainability"],
