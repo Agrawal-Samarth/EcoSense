@@ -445,7 +445,7 @@ const Credits = () => {
                 </p>
                 <div className="flex items-center justify-center space-x-4">
                   <a 
-                    href="https://github.com/IND-GAMINGBEAST/EcoSense"
+                    href="https://github.com/Agrawal-Samarth/EcoSense"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="inline-flex items-center text-blue-600 hover:text-blue-700 transition-colors"

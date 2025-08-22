@@ -30,7 +30,7 @@ const Footer = () => {
   };
 
   const socialLinks = [
-    { icon: <Github className="w-5 h-5" />, href: 'https://github.com/IND-GAMINGBEAST/EcoSense', label: 'GitHub' },
+            { icon: <Github className="w-5 h-5" />, href: 'https://github.com/Agrawal-Samarth/EcoSense', label: 'GitHub' },
     { icon: <Twitter className="w-5 h-5" />, href: '#', label: 'Twitter' },
     { icon: <Linkedin className="w-5 h-5" />, href: '#', label: 'LinkedIn' },
     { icon: <Mail className="w-5 h-5" />, href: 'mailto:team@ecofootprint.com', label: 'Email' }
