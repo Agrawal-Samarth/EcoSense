@@ -23,7 +23,7 @@ import {
   Calendar,
   MapPin,
   CheckCircle,
-  Leaf
+  Sprout
 } from 'lucide-react';
 
 const Home = () => {
@@ -140,7 +140,7 @@ const Home = () => {
           "Avoid irreversible tipping points",
           "Protect vulnerable communities and ecosystems"
         ],
-        urgency: [
+        actions: [
           "Accelerate renewable energy adoption",
           "Implement carbon pricing",
           "Strengthen climate policies",
@@ -365,11 +365,11 @@ const Home = () => {
                 </div>
               )}
 
-              {content.urgency && (
+              {content.actions && (
                 <div className="mb-6">
                   <h3 className="text-xl font-semibold text-gray-800 mb-3">Urgent Actions Needed:</h3>
                   <ul className="space-y-2">
-                    {content.urgency.map((action, index) => (
+                    {content.actions.map((action, index) => (
                       <li key={index} className="flex items-start space-x-2">
                         <Clock className="w-5 h-5 text-red-500 mt-0.5 flex-shrink-0" />
                         <span className="text-gray-700">{action}</span>
@@ -399,7 +399,7 @@ const Home = () => {
                   <ul className="space-y-2">
                     {content.conservation.map((action, index) => (
                       <li key={index} className="flex items-start space-x-2">
-                        <Leaf className="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" />
+                        <Sprout className="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" />
                         <span className="text-gray-700">{action}</span>
                       </li>
                     ))}

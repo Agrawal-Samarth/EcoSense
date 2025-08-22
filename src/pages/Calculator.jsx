@@ -19,7 +19,7 @@ import {
   Bike, 
   Train, 
   Plane, 
-  Leaf, 
+  Sprout, 
   Calculator as CalculatorIcon, 
   TrendingDown,
   Lightbulb,
@@ -38,18 +38,28 @@ ChartJS.register(
 );
 
 const schema = yup.object({
-  transport: yup.string().required('Please select your primary mode of transport'),
-  transportHours: yup.number().min(0).max(24).required('Please enter hours per week'),
-  diet: yup.string().required('Please select your diet type'),
-  energyUsage: yup.number().min(0).required('Please enter your monthly energy usage'),
-  digitalUsage: yup.number().min(0).max(24).required('Please enter daily digital usage hours'),
-  waste: yup.string().required('Please select your waste management'),
-  shopping: yup.string().required('Please select your shopping habits'),
+  transport: yup.string().required('Please choose how you usually travel'),
+  transportHours: yup.number()
+    .min(0, 'Hours cannot be negative')
+    .max(168, 'Hours cannot be more than 168 per week (24 hours × 7 days)')
+    .required('Please tell us how many hours you travel per week'),
+  diet: yup.string().required('Please select your diet preference'),
+  energyUsage: yup.number()
+    .min(0, 'Energy usage cannot be negative')
+    .required('Please enter your monthly electricity usage'),
+  digitalUsage: yup.number()
+    .min(0, 'Digital usage cannot be negative')
+    .max(24, 'Digital usage cannot be more than 24 hours per day')
+    .required('Please tell us how many hours you use digital devices daily'),
+  waste: yup.string().required('Please select how you handle waste'),
+  shopping: yup.string().required('Please select your shopping style'),
 }).required();
 
 const Calculator = () => {
   const [results, setResults] = useState(null);
   const [isCalculating, setIsCalculating] = useState(false);
+
+  const [showErrors, setShowErrors] = useState(false);
 
   const {
     register,
@@ -58,8 +68,25 @@ const Calculator = () => {
     reset,
     watch
   } = useForm({
-    resolver: yupResolver(schema)
+    resolver: yupResolver(schema),
+    mode: 'onSubmit' // Only show errors after form submission
   });
+
+  // Helper function to check if error should be shown
+  const shouldShowError = (fieldName) => {
+    return errors[fieldName] && showErrors;
+  };
+
+  const onSubmit = (data) => {
+    setShowErrors(true);
+    calculateFootprint(data);
+  };
+
+  const handleReset = () => {
+    setShowErrors(false);
+    setResults(null);
+    reset();
+  };
 
 
 
@@ -71,7 +98,7 @@ const Calculator = () => {
     { value: 'motorcycle', label: 'Motorcycle', icon: Bike, factor: 1.8 },
     { value: 'public', label: 'Public Transport', icon: Train, factor: 0.4 },
     { value: 'bike', label: 'Bicycle', icon: Bike, factor: 0.0 },
-    { value: 'walk', label: 'Walking', icon: Leaf, factor: 0.0 },
+    { value: 'walk', label: 'Walking', icon: Sprout, factor: 0.0 },
   ];
 
   const dietOptions = [
@@ -277,7 +304,7 @@ const Calculator = () => {
                 <h2 className="text-2xl font-bold text-gray-800">Your Lifestyle</h2>
               </div>
 
-              <form onSubmit={handleSubmit(calculateFootprint)} className="space-y-6">
+              <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
                 {/* Transport */}
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-3">
@@ -299,7 +326,7 @@ const Calculator = () => {
                       </label>
                     ))}
                   </div>
-                  {errors.transport && (
+                  {shouldShowError('transport') && (
                     <p className="text-red-500 text-sm mt-1">{errors.transport.message}</p>
                   )}
                 </div>
@@ -314,8 +341,11 @@ const Calculator = () => {
                     {...register('transportHours')}
                     className="form-input"
                     placeholder="e.g., 5"
+                    min="0"
+                    max="168"
+                    step="0.5"
                   />
-                  {errors.transportHours && (
+                  {shouldShowError('transportHours') && (
                     <p className="text-red-500 text-sm mt-1">{errors.transportHours.message}</p>
                   )}
                 </div>
@@ -341,7 +371,7 @@ const Calculator = () => {
                       </label>
                     ))}
                   </div>
-                  {errors.diet && (
+                  {shouldShowError('diet') && (
                     <p className="text-red-500 text-sm mt-1">{errors.diet.message}</p>
                   )}
                 </div>
@@ -356,8 +386,10 @@ const Calculator = () => {
                     {...register('energyUsage')}
                     className="form-input"
                     placeholder="e.g., 300"
+                    min="0"
+                    step="0.1"
                   />
-                  {errors.energyUsage && (
+                  {shouldShowError('energyUsage') && (
                     <p className="text-red-500 text-sm mt-1">{errors.energyUsage.message}</p>
                   )}
                 </div>
@@ -372,8 +404,11 @@ const Calculator = () => {
                     {...register('digitalUsage')}
                     className="form-input"
                     placeholder="e.g., 4"
+                    min="0"
+                    max="24"
+                    step="0.5"
                   />
-                  {errors.digitalUsage && (
+                  {shouldShowError('digitalUsage') && (
                     <p className="text-red-500 text-sm mt-1">{errors.digitalUsage.message}</p>
                   )}
                 </div>
@@ -395,7 +430,7 @@ const Calculator = () => {
                     <option value="no-recycling">No Recycling</option>
                     <option value="excessive-waste">Excessive Waste</option>
                   </select>
-                  {errors.waste && (
+                  {shouldShowError('waste') && (
                     <p className="text-red-500 text-sm mt-1">{errors.waste.message}</p>
                   )}
                 </div>
@@ -417,7 +452,7 @@ const Calculator = () => {
                     <option value="fast-fashion">Fast Fashion & Disposable</option>
                     <option value="luxury-consumption">Luxury & High Consumption</option>
                   </select>
-                  {errors.shopping && (
+                  {shouldShowError('shopping') && (
                     <p className="text-red-500 text-sm mt-1">{errors.shopping.message}</p>
                   )}
                 </div>
@@ -529,11 +564,24 @@ const Calculator = () => {
                           transition={{ delay: index * 0.1 }}
                           className="flex items-start space-x-3"
                         >
-                          <Leaf className="h-5 w-5 text-eco-green mt-0.5 flex-shrink-0" />
+                          <Sprout className="h-5 w-5 text-eco-green mt-0.5 flex-shrink-0" />
                           <span className="text-gray-700">{tip}</span>
                         </motion.li>
                       ))}
                     </ul>
+                  </div>
+
+                  {/* Reset Button */}
+                  <div className="flex justify-center">
+                    <motion.button
+                      onClick={handleReset}
+                      className="btn-secondary flex items-center space-x-2"
+                      whileHover={{ scale: 1.02 }}
+                      whileTap={{ scale: 0.98 }}
+                    >
+                      <CalculatorIcon className="h-5 w-5" />
+                      <span>Calculate Again</span>
+                    </motion.button>
                   </div>
                 </motion.div>
               ) : (

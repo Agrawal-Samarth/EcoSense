@@ -1,5 +1,7 @@
 # EcoSense - Environmental Education Platform 🌱
 
+**🏆 Third Place Winner at Quantum Quest Competition (Ambience Public School)**
+
 A modern, interactive website for understanding and calculating ecological footprints. Built with React, Vite, and Tailwind CSS.
 
 ## 🌟 Features
@@ -219,6 +221,8 @@ eco-footprint/
 3. Commit your changes (`git commit -m 'Add amazing feature'`)
 4. Push to the branch (`git push origin feature/amazing-feature`)
 5. Open a Pull Request
+
+
 
 ## 👨‍💻 Contributors
 

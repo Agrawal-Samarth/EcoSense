@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
-  Leaf, 
+  Sprout, 
   Menu, 
   X, 
   Calculator, 
@@ -47,7 +47,7 @@ const Navbar = () => {
   };
 
   const navItems = [
-    { path: '/', label: 'Home', icon: <Leaf className="w-4 h-4" /> },
+    { path: '/', label: 'Home', icon: <Sprout className="w-4 h-4" /> },
     { path: '/about', label: 'About', icon: <Info className="w-4 h-4" /> },
     { path: '/school-corner', label: 'School Corner', icon: <School className="w-4 h-4" /> },
     { path: '/calculator', label: 'Calculator', icon: <Calculator className="w-4 h-4" /> },
@@ -79,7 +79,7 @@ const Navbar = () => {
               whileHover={{ scale: 1.1, rotate: 5 }}
               className="w-10 h-10 lg:w-12 lg:h-12 bg-gradient-to-br from-emerald-500 to-teal-600 rounded-xl flex items-center justify-center shadow-lg"
             >
-              <Leaf className="w-6 h-6 lg:w-7 lg:h-7 text-white" />
+              <Sprout className="w-6 h-6 lg:w-7 lg:h-7 text-white" />
             </motion.div>
             <div className="flex flex-col">
               <span className="text-xl lg:text-2xl font-bold text-white group-hover:text-emerald-300 transition-colors">

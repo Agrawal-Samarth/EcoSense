@@ -8,7 +8,7 @@ export const AI_CONFIG = {
   // Google Gemini API (FREE - Recommended)
   GEMINI: {
     enabled: true, // Enable Gemini for free AI responses
-    apiKey: 'YOUR_GEMINI_API_KEY_HERE', // Replace with your actual API key
+    apiKey: 'YOUR_GEMINI_API_KEY_HERE', // Add your Gemini API key here
     model: 'gemini-1.5-flash',
     endpoint: 'https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent'
   },

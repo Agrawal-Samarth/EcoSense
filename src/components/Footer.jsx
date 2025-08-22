@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { 
-  Leaf, 
+  Sprout, 
   Github, 
   Twitter, 
   Linkedin, 
@@ -62,7 +62,7 @@ const Footer = () => {
                 whileHover={{ scale: 1.1, rotate: 5 }}
                 className="w-12 h-12 bg-gradient-to-br from-emerald-500 to-teal-600 rounded-xl flex items-center justify-center shadow-lg relative overflow-hidden"
               >
-                <Leaf className="w-7 h-7 text-white relative z-10" />
+                <Sprout className="w-7 h-7 text-white relative z-10" />
                 <div className="absolute inset-0 bg-gradient-to-br from-blue-500/20 to-green-500/20 rounded-xl"></div>
               </motion.div>
                   <div>
@@ -196,7 +196,7 @@ const Footer = () => {
         >
           <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
             <div className="flex items-center space-x-2 text-gray-300">
-              <span>© {currentYear} EcoFootprint. Made with</span>
+              <span>© {currentYear} EcoSense. Made with</span>
               <motion.div
                 animate={{ scale: [1, 1.2, 1] }}
                 transition={{ duration: 1, repeat: Infinity }}
@@ -207,7 +207,7 @@ const Footer = () => {
             </div>
             
             <div className="flex items-center space-x-6 text-sm text-gray-300">
-              <a href="#" className="hover:text-emerald-300 transition-colors">Privacy Policy</a>
+              <a href="./LICENSE" className="hover:text-emerald-300 transition-colors">Privacy Policy</a>
               <a href="#" className="hover:text-emerald-300 transition-colors">Terms of Service</a>
               <a href="#" className="hover:text-emerald-300 transition-colors">Cookie Policy</a>
             </div>

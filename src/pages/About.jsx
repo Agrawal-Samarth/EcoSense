@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
-  Leaf, 
+  Sprout, 
   Globe, 
   Target, 
   TrendingUp, 
@@ -445,7 +445,7 @@ const About = () => {
     { number: "51", unit: "billion tons", label: "Greenhouse gases emitted annually", icon: <TrendingUp className="w-6 h-6" /> },
     { number: "4.8", unit: "tons", label: "Average CO₂ per person per year", icon: <Users className="w-6 h-6" /> },
     { number: "2.0", unit: "tons", label: "Target by 2030 to meet climate goals", icon: <Target className="w-6 h-6" /> },
-    { number: "137", unit: "species", label: "Lost every day due to climate change", icon: <Leaf className="w-6 h-6" /> }
+          { number: "137", unit: "species", label: "Lost every day due to climate change", icon: <Sprout className="w-6 h-6" /> }
   ];
 
   const quizQuestions = [
@@ -773,7 +773,7 @@ const About = () => {
               className="card"
             >
               <div className="text-center">
-                <Leaf className="w-16 h-16 text-emerald-500 mx-auto mb-6" />
+                <Sprout className="w-16 h-16 text-emerald-500 mx-auto mb-6" />
                 <h3 className="text-2xl font-bold text-gray-800 mb-4">Why Calculate Your Footprint?</h3>
                 <div className="space-y-4 text-left">
                   <div className="flex items-center space-x-3">
